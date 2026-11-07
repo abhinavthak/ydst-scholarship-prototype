@@ -510,6 +510,25 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
   .features,.busy-grid,.uni-grid{grid-template-columns:1fr}
   .tabs button small{display:none}
 }
+/* Registration popup */
+.modal-lock,.modal-lock body{overflow:hidden}
+.reg-modal{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:16px}
+.reg-modal[hidden]{display:none}
+.reg-backdrop{position:absolute;inset:0;background:rgba(12,16,24,.55);opacity:0;transition:opacity .2s}
+.reg-dialog{position:relative;width:100%;max-width:400px;max-height:calc(100dvh - 32px);overflow:auto;border-radius:22px;opacity:0;transform:translateY(12px) scale(.98);transition:opacity .2s,transform .2s;overscroll-behavior:contain}
+.reg-modal.open .reg-backdrop{opacity:1}
+.reg-modal.open .reg-dialog{opacity:1;transform:none}
+.reg-dialog .form-card{box-shadow:0 20px 60px rgba(0,0,0,.25);padding-top:22px}
+.reg-close{position:absolute;top:10px;right:10px;z-index:2;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--ink-2);background:transparent}
+.reg-close:hover{background:var(--tile)}
+.reg-close svg{width:20px;height:20px}
+@media (max-width:600px){
+  .reg-modal{align-items:flex-end;padding:0}
+  .reg-dialog{max-width:none;max-height:92dvh;border-radius:22px 22px 0 0;transform:translateY(100%)}
+  .reg-modal.open .reg-dialog{transform:none}
+  .reg-dialog .form-card{border-radius:22px 22px 0 0;padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+  .reg-dialog .form-card::before{content:"";display:block;width:40px;height:4px;border-radius:2px;background:#d9d9d9;margin:-10px auto 12px}
+}
 </style>
 </head>
 <body>
@@ -776,6 +795,14 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
 
 <div class="sticky-cta" id="stickyCta" aria-hidden="true"><div><b>Free · 60 min · 24×7</b><span>Score 51/60 for 50% off</span></div><a href="#register" class="btn" tabindex="-1">Register free</a></div>
 
+<div class="reg-modal" id="regModal" role="dialog" aria-modal="true" aria-label="Register for YDST 2026" hidden>
+  <div class="reg-backdrop" data-close></div>
+  <div class="reg-dialog" id="regDialog">
+    <button type="button" class="reg-close" data-close aria-label="Close registration form"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div id="regSlot"></div>
+  </div>
+</div>
+
 <div class="modal" id="modal"><div><h3>Prototype</h3><p>Sign in isn't wired up in this prototype.</p><button class="btn" id="modalClose">Got it</button></div></div>
 
 <script>
@@ -939,10 +966,46 @@ $$('.fc > h4').forEach(h4=>{h4.setAttribute('role','button');h4.tabIndex=0;h4.se
 
 /* Sticky CTA on phones: visible once the form is scrolled past, hidden while the final CTA or footer is on screen */
 const sticky=$('#stickyCta'), stickyLink=sticky.querySelector('a');
+/* Registration popup: every "Register" link opens the form in a dialog */
+let regOpen=false, regHome=null, regLastFocus=null;
+const regModal=$('#regModal'), regCard=$('#register');
+function openReg(){
+  if(regOpen) return;
+  regLastFocus=document.activeElement;
+  regHome=document.createComment('register-home'); regCard.before(regHome);
+  $('#regSlot').append(regCard);
+  regModal.hidden=false; requestAnimationFrame(()=>regModal.classList.add('open'));
+  document.documentElement.classList.add('modal-lock'); regOpen=true; updSticky();
+  const target=$('#phone').readOnly?($('#program').value?$('#name'):$('#program')):$('#phone');
+  setTimeout(()=>target.focus({preventScroll:true}),60);
+}
+function closeReg(){
+  if(!regOpen) return;
+  regModal.classList.remove('open');
+  setTimeout(()=>{regModal.hidden=true; regHome.replaceWith(regCard); regHome=null;},200);
+  document.documentElement.classList.remove('modal-lock'); regOpen=false; updSticky();
+  if(regLastFocus) regLastFocus.focus({preventScroll:true});
+}
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href="#register"]');
+  if(a){e.preventDefault(); openReg(); return;}
+  if(regOpen && e.target.closest('[data-close]')) closeReg();
+});
+document.addEventListener('keydown',e=>{
+  if(!regOpen) return;
+  if(e.key==='Escape'){closeReg(); return;}
+  if(e.key==='Tab'){ // keep focus inside the dialog
+    const f=[...regModal.querySelectorAll('button,input,select,a[href]')].filter(el=>!el.disabled&&el.offsetParent);
+    if(!f.length) return; const first=f[0], last=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+  }
+});
+
 function updSticky(){
   const vh=innerHeight, past=$('#register').getBoundingClientRect().bottom<0;
   const ctaIn=$('.cta').getBoundingClientRect().top<vh, done=$('#formOk').style.display==='block';
-  const show=past&&!ctaIn&&!done;
+  const show=past&&!ctaIn&&!done&&!regOpen;
   sticky.classList.toggle('show',show); sticky.setAttribute('aria-hidden',String(!show)); stickyLink.tabIndex=show?0:-1;
 }
 addEventListener('scroll',updSticky,{passive:true}); addEventListener('resize',updSticky); updSticky();
