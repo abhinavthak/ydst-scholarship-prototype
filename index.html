@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YourDegree Scholarship Test (YDST 2026)</title>
+<meta name="description" content="Score 170 out of 200 and get 50% off your first-semester tuition at any university on YourDegree.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#c13515; --red-dark:#a92c10; --maroon:#581000;
+  --ink:#1a1d21; --ink-2:#3d4148; --muted:#5f636b; --line:#e3e3e3;
+  --bg:#ffffff; --bg-soft:#f7f7f7; --tile:#f2f2f2; --navy:#0a1f3d;
+  --green:#0b7a4b; --radius:20px; --wrap:1068px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Google Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.45}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{max-width:calc(var(--wrap) + 32px);margin:0 auto;padding:0 16px}
+.accent{color:var(--red)}
+.section-title{font-size:28px;font-weight:600;letter-spacing:-.02em;text-align:center;line-height:1.15}
+.section-sub{color:var(--muted);text-align:center;margin-top:12px;font-size:14px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 36px;border-radius:999px;background:var(--red);color:#fff;font-weight:600;font-size:14px;transition:background .15s,transform .15s}
+.btn:hover{background:var(--red-dark)}
+.btn:active{transform:scale(.98)}
+.btn svg{width:16px;height:16px}
+.center{text-align:center}
+
+/* Header */
+header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
+.nav{display:flex;align-items:center;height:76px;gap:24px}
+.logo{font-weight:600;font-size:20px;line-height:1.05;color:var(--maroon);letter-spacing:-.01em}
+.logo i{font-style:normal;color:var(--red)}
+.nav-links{display:flex;gap:30px;margin-left:auto;margin-right:auto;align-items:center}
+.nav-links a{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:500;white-space:nowrap}
+.nav-links img{height:26px;width:auto}
+.nav-links .chev{width:14px;height:14px;margin-left:4px}
+.new{background:var(--maroon);color:#fff;font-size:8px;font-weight:700;padding:2px 6px;border-radius:999px;margin-left:4px;letter-spacing:.04em}
+.nav-right{display:flex;align-items:center;gap:0;background:#fff;border-radius:999px;box-shadow:0 0 0 1px #ececec}
+.signin{height:34px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:500;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.menu-btn{width:34px;height:34px;border-radius:50%;display:grid;place-items:center}
+.menu-btn svg{width:20px;height:20px}
+.mobile-menu{display:none;flex-direction:column;padding:8px 16px 16px;gap:4px;background:var(--bg-soft);border-top:1px solid var(--line)}
+.mobile-menu a{display:flex;align-items:center;gap:10px;padding:10px 4px;font-weight:500;font-size:15px}
+.mobile-menu img{height:24px}
+.mobile-menu.open{display:flex}
+
+/* Hero */
+.hero{padding:40px 0 64px}
+.hero-grid{display:grid;grid-template-columns:1fr 350px;gap:48px;align-items:center}
+.pill{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink-2);margin-bottom:12px}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
+.hero h1{font-size:47px;line-height:1.1;font-weight:600;letter-spacing:-.025em}
+.hero p.lead{margin-top:18px;font-size:14px;color:var(--ink-2);max-width:510px;line-height:1.5}
+.hero p.lead b{font-weight:600;color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;max-width:600px}
+.stats b{display:block;font-size:26px;font-weight:600;letter-spacing:-.01em}
+.stats span{font-size:12px;color:var(--muted)}
+
+.form-card{background:#fff;border-radius:22px;box-shadow:0 0 0 1px #e6e6e6,0 4px 16px rgba(0,0,0,.06);padding:16px 18px 18px}
+.form-card h2{font-size:20px;font-weight:600;text-align:center;letter-spacing:-.01em}
+.form-card .sub{font-size:12px;text-align:center;margin-top:4px;color:var(--ink-2)}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--tile);border-radius:999px;padding:3px;margin:14px 0 14px}
+.seg button{height:34px;border-radius:999px;font-size:12px;color:var(--muted);transition:.15s}
+.seg button.on{background:#fff;color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.field{display:flex;align-items:center;height:35px;border:1px solid #dcdcdc;border-radius:4px;margin-bottom:5px;padding:0 9px;font-size:12px;background:#fff}
+.field:focus-within{border-color:var(--ink-2)}
+.field input,.field select{flex:1;border:0;outline:0;font:inherit;font-size:12px;color:var(--ink);background:transparent;height:100%;min-width:0}
+.field select{appearance:none;cursor:pointer;color:var(--muted)}
+.field select.chosen{color:var(--ink)}
+.field .chev{width:14px;height:14px;pointer-events:none}
+.field .cc{display:flex;align-items:center;gap:4px;color:var(--muted);padding-right:8px;margin-right:8px;border-right:1px solid #dcdcdc;height:14px}
+.flag{width:13px;height:13px;border-radius:50%;background:linear-gradient(#f93 0 33%,#fff 33% 66%,#128807 66%);position:relative}
+.flag::after{content:"";position:absolute;inset:4.5px;border-radius:50%;background:#000080}
+.submit{width:100%;height:37px;margin-top:66px;border-radius:4px;background:#999;color:#fff;font-weight:600;font-size:14px;cursor:not-allowed;transition:background .15s}
+.submit.ready{background:var(--red);cursor:pointer}
+.submit.ready:hover{background:var(--red-dark)}
+.legal{font-size:9px;text-align:center;color:var(--ink-2);margin-top:8px;line-height:1.35}
+.legal a{color:var(--ink);font-weight:500}
+.form-ok{display:none;text-align:center;padding:40px 8px}
+.form-ok svg{width:48px;height:48px;margin:0 auto 12px;color:var(--green)}
+.form-ok h3{font-size:18px;font-weight:600}
+.form-ok p{font-size:13px;color:var(--muted);margin-top:6px}
+
+.trust{padding:8px 0 28px}
+.trust img{width:100%;max-width:1068px;margin:0 auto}
+
+/* Banner */
+.banner img{width:100%;border-radius:28px;box-shadow:0 4px 18px rgba(0,0,0,.12)}
+
+/* Features */
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;padding-top:38px;padding-bottom:42px;text-align:center}
+.feat .ic{width:60px;height:60px;border-radius:16px;background:var(--tile);display:grid;place-items:center;margin:0 auto 26px}
+.feat .ic img{width:26px;height:26px}
+.feat .ic.raw{background:none}
+.feat .ic.raw img{width:60px;height:60px}
+.feat h3{font-size:19px;font-weight:600;line-height:1.3;letter-spacing:-.01em}
+.feat p{font-size:13px;color:var(--muted);margin-top:16px;line-height:1.55}
+
+/* Universities */
+.unis{background:var(--bg-soft);padding:54px 0 40px}
+.uni-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.uni{display:flex;align-items:center;gap:15px;background:#fff;border:1px solid #e6e6e6;border-radius:14px;padding:14px 16px}
+.uni img{width:30px}
+.uni b{display:block;font-weight:600;font-size:14px;letter-spacing:-.01em}
+.uni span{font-size:11px;color:var(--muted)}
+.uni em{display:inline-block;font-style:normal;font-size:8.5px;font-weight:700;background:var(--tile);padding:2px 4px;border-radius:3px;margin-top:4px}
+.uni.extra{display:none}
+.unis.all .uni.extra{display:flex}
+.more{margin-top:34px;height:46px;padding:0 20px;min-width:178px;border-radius:999px;border:1px solid var(--ink);background:#fff;font-weight:600;font-size:13px}
+.more:hover{background:var(--ink);color:#fff}
+
+/* Busy learners */
+.busy{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center;padding-top:80px;padding-bottom:70px}
+.busy-left{text-align:center}
+.busy-left h2{font-size:26px;font-weight:600;letter-spacing:-.02em}
+.busy-left p{color:var(--muted);font-size:13px;max-width:270px;margin:22px auto 22px}
+.busy-grid{display:grid;grid-template-columns:1fr 1fr}
+.busy-grid > div{text-align:center;padding:0 22px 22px}
+.busy-grid > div:nth-child(1){border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.busy-grid > div:nth-child(2){border-bottom:1px solid var(--line)}
+.busy-grid > div:nth-child(3){border-right:1px solid var(--line);padding-top:26px}
+.busy-grid > div:nth-child(4){padding-top:26px}
+.busy-grid img{width:66px;margin:0 auto 22px}
+.busy-grid h3{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.busy-grid p{font-size:13px;color:var(--muted);margin:12px auto 0;max-width:210px}
+
+/* Structure */
+.structure{padding-top:16px;padding-bottom:30px}
+.structure h2{font-size:27px}
+.struct-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:56px;align-items:start}
+.sec-row{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.sec-row:first-child{padding-top:10px}
+.sec-row:last-of-type{border-bottom:0}
+.sec-row span{font-size:16px;font-weight:500}
+.sec-row b{font-size:26px;font-weight:600;letter-spacing:-.02em}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:12px}
+.mini div{background:var(--bg-soft);border-radius:8px;text-align:center;padding:22px 10px 18px}
+.mini b{display:block;font-size:26px;font-weight:600}
+.mini span{font-size:16px;font-weight:500;color:var(--ink-2)}
+.diff img{width:100%;border-radius:28px}
+
+/* Prepare */
+.prepare{padding-top:80px;padding-bottom:40px}
+.tabs{display:flex;width:max-content;max-width:100%;margin:30px auto 0;background:var(--tile);border-radius:999px;padding:3px}
+.tabs button{height:66px;padding:0 38px;border-radius:999px;font-size:16px;font-weight:600;color:var(--muted);line-height:1.2;transition:.15s}
+.tabs button small{display:block;font-size:10px;font-weight:400;margin-top:4px}
+.tabs button.on{background:#fff;color:var(--ink);box-shadow:0 2px 6px rgba(0,0,0,.1)}
+.meta{font-size:12px;color:var(--muted);margin:36px 0 14px}
+.meta b{color:var(--ink);font-weight:600}
+.prep-grid{display:grid;grid-template-columns:350px 1fr;gap:20px;align-items:start}
+.sec-list{background:var(--tile);border-radius:16px;padding:3px}
+.sec-list button{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;padding:18px 20px;border-radius:12px;transition:.15s}
+.sec-list button b{display:block;font-size:17px;font-weight:600;letter-spacing:-.01em}
+.sec-list button small{font-size:11px;color:var(--muted)}
+.sec-list button .time{display:none;text-align:right;font-size:12px;font-weight:600;color:var(--ink-2);line-height:1}
+.sec-list button .time em{display:block;font-style:normal;font-size:8px;font-weight:500}
+.sec-list button.on{background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.sec-list button.on .time{display:block}
+.topics h3{font-size:19px;font-weight:600;letter-spacing:-.01em;padding:12px 14px 18px}
+.topic{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border-bottom:1px solid var(--line)}
+.topic b{font-weight:500;font-size:13px}
+.topic small{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+.topic .hw{font-size:8px;font-weight:700;background:#eef2fb;color:#2a3d6b;padding:2px 5px;border-radius:3px;margin-left:8px;letter-spacing:.03em;vertical-align:2px}
+.topic strong{font-size:15px;font-weight:600;white-space:nowrap}
+.topic.total{border-bottom:0}
+.topic.total b{font-weight:600}
+.topic.total strong{font-size:15px}
+.topic.total strong span{font-size:12px;font-weight:500;color:var(--muted)}
+
+/* Steps */
+.steps{background:var(--bg-soft);padding:50px 0 40px}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:46px;margin-top:66px}
+.steps-grid .n{font-size:26px;font-weight:600;color:#666}
+.steps-grid h3{font-size:19px;font-weight:600;margin:6px 0 14px;letter-spacing:-.01em}
+.steps-grid p{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* Testimonials */
+.tests{padding-top:52px;padding-bottom:40px}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
+.tcard{position:relative;border:1px solid #e3e3e3;border-radius:16px;padding:24px 22px 22px;display:flex;flex-direction:column;min-height:216px}
+.tcard p{font-size:13px;line-height:1.55;color:var(--ink-2);flex:1;padding-right:12px}
+.tcard .q{position:absolute;right:16px;top:8px;font-size:62px;line-height:1;font-weight:700;color:#f6c8c8;font-family:Georgia,serif}
+.tcard footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:14px;margin-top:24px}
+.tcard footer b{font-size:13px;font-weight:600;display:block}
+.tcard footer small{font-size:10px;color:var(--muted)}
+.score{background:#fdecea;color:var(--red);font-weight:600;font-size:13px;padding:5px 9px;border-radius:999px}
+.tcard.dark{background:linear-gradient(90deg,#180606 0%,#3a0a0e 55%,#5b0a12 100%);border-color:transparent}
+.tcard.dark p,.tcard.dark footer b{color:#fff}
+.tcard.dark footer small{color:#d5c7c7}
+.tcard.dark footer{border-color:rgba(255,255,255,.18)}
+.tcard.dark .q{color:#7a2a2f}
+.tcard.dark .score{background:#7a3b0a;color:#ffc21a}
+
+/* Good to know */
+.gtk{padding-top:36px;padding-bottom:40px}
+.gtk-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;margin-top:50px}
+.gtk-box{padding:4px 14px}
+.gtk-box.alt{background:var(--bg-soft);border-radius:16px;padding:16px 14px 6px;margin-top:-12px}
+.gtk-box h3{font-size:16px;font-weight:600;margin-bottom:12px}
+.gtk-box li{list-style:none;display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-2)}
+.gtk-box li:last-child{border-bottom:0}
+.gtk-box .ck{flex:none;width:16px;height:16px;border-radius:50%;background:#dff3e8;display:grid;place-items:center;margin-top:1px}
+.gtk-box .ck svg{width:10px;height:10px;color:var(--green)}
+.gtk-box .x{flex:none;width:16px;height:16px;display:grid;place-items:center;color:#e01b2b;margin-top:1px}
+.gtk-box .x svg{width:9px;height:9px}
+
+/* FAQ */
+.faq{background:var(--bg-soft);padding:40px 0 40px}
+.faq-grid{display:grid;grid-template-columns:400px 1fr;gap:54px}
+.faq h2{font-size:41px;font-weight:600;line-height:1.1;letter-spacing:-.025em}
+.faq-left p{font-size:13px;color:var(--ink-2);margin-top:28px;line-height:1.55}
+.faq-left a{font-weight:600;text-decoration:underline;color:var(--ink)}
+.qa{border-bottom:1px solid #d8d8d8}
+.qa button{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;font-size:17px;font-weight:500;padding:20px 0 20px;gap:16px}
+.qa button svg{flex:none;width:18px;height:18px;transition:transform .2s;color:var(--muted)}
+.qa.open button svg{transform:rotate(180deg)}
+.qa .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s}
+.qa.open .a{grid-template-rows:1fr}
+.qa .a > div{overflow:hidden}
+.qa .a p{font-size:14px;color:var(--ink-2);padding:0 40px 22px 0;line-height:1.5}
+
+/* CTA */
+.cta{padding-top:80px;padding-bottom:80px}
+.cta-box{position:relative;max-width:974px;margin:0 auto}
+.cta-box img{width:100%;border-radius:24px}
+.cta-box .cta-btn{position:absolute;right:4.8%;top:38.3%;height:22.9%;width:14.6%;justify-content:center;white-space:nowrap;padding:0;min-height:34px;padding:0 1.6em;background:#fff;color:#c4202f;border-radius:7px;display:flex;align-items:center;gap:8px;font-weight:600;font-size:clamp(11px,1.3vw,14px);box-shadow:0 2px 8px rgba(0,0,0,.12);transition:transform .15s}
+.cta-box .cta-btn:hover{transform:translateY(-1px)}
+.cta-box .cta-btn svg{width:15px;height:15px;flex:none}
+
+/* Footer */
+.site-footer{background:var(--navy);color:#fff;padding:36px 0 40px}
+.f-top{display:flex;gap:24px;align-items:flex-start;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.18)}
+.f-top .logo{color:#fff;flex:none}
+.f-top p{font-size:14px;color:#c9d1dc;max-width:440px;padding-top:2px}
+.f-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:36px 0 32px;border-bottom:1px solid rgba(255,255,255,.18)}
+.f-cols h4{font-size:14px;font-weight:600;margin-bottom:18px}
+.f-cols a{display:block;font-size:12px;color:#c9d1dc;margin-bottom:10px;line-height:1.3}
+.f-cols a:hover{color:#fff}
+.f-cols .span2{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:0 24px;align-content:start}
+.f-cols .span2 h4{grid-column:1/-1}
+.copy{font-size:12px;color:#c9d1dc;padding-top:14px}
+
+/* Modal */
+.modal{position:fixed;inset:0;background:rgba(10,15,25,.5);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal.open{display:flex}
+.modal > div{background:#fff;border-radius:20px;padding:28px;max-width:380px;width:100%;text-align:center}
+.modal h3{font-size:20px;font-weight:600}
+.modal p{font-size:14px;color:var(--muted);margin:8px 0 20px}
+
+/* Responsive */
+@media (max-width:1100px){
+  .nav-links{gap:18px}
+  .nav-links img{display:none}
+}
+@media (max-width:960px){
+  .nav-links{display:none}
+  .nav-right{margin-left:auto}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .form-card{max-width:440px;width:100%;margin:0 auto}
+  .features,.steps-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .uni-grid{grid-template-columns:1fr 1fr}
+  .busy,.struct-grid,.faq-grid,.gtk-grid{grid-template-columns:1fr}
+  .prep-grid{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr}
+  .f-cols{grid-template-columns:1fr 1fr}
+  .gtk-box.alt{margin-top:0}
+}
+@media (max-width:600px){
+  .hero h1{font-size:36px}
+  .stats{grid-template-columns:1fr 1fr;margin-top:36px}
+  .features,.steps-grid,.uni-grid{grid-template-columns:1fr}
+  .busy-grid{grid-template-columns:1fr}
+  .busy-grid > div{border:0!important;padding:20px 8px!important}
+  .tabs button{padding:0 16px;height:60px;font-size:14px}
+  .section-title{font-size:24px}
+  .faq h2{font-size:32px}
+  .f-cols,.f-cols .span2{grid-template-columns:1fr}
+  .f-cols .span2{grid-column:auto}
+  .f-top{flex-direction:column}
+  .banner img,.diff img{border-radius:16px}
+  .cta-box img{border-radius:14px}
+  .cta-box .cta-btn{position:static;margin:12px auto 0;width:max-content;height:42px;font-size:14px;background:var(--red);color:#fff;width:auto;padding:0 24px}
+  .trust{overflow-x:auto}
+  .trust img{min-width:720px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">Your<i>.</i><br>Degree</a>
+    <nav class="nav-links">
+      <a href="#unis"><img src="assets/nav1.png" alt="">Explore Programs<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+      <a href="#unis"><img src="assets/nav2.png" alt="">Top University<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+      <a href="#prepare"><img src="assets/nav3.png" alt="">Tools<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+      <a href="#unis"><img src="assets/nav4.png" alt="">Compare Programs<span class="new">NEW</span></a>
+    </nav>
+    <div class="nav-right">
+      <button class="signin" data-modal>Sign in</button>
+      <button class="menu-btn" aria-label="Menu" id="menuBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#unis"><img src="assets/nav1.png" alt="">Explore Programs</a>
+    <a href="#unis"><img src="assets/nav2.png" alt="">Top University</a>
+    <a href="#prepare"><img src="assets/nav3.png" alt="">Tools</a>
+    <a href="#unis"><img src="assets/nav4.png" alt="">Compare Programs</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="pill">Registrations open · YourDegree Scholarship Test</div>
+      <h1>Scholarship Ka<br><span class="accent">Sabse Smart</span> Test</h1>
+      <p class="lead">Score 170 out of 200 and get <b>50% off your first-semester tuition</b> at any university on YourDegree. Free to take, open anytime, results in minutes.</p>
+      <div class="stats">
+        <div><b>50%</b><span>First-sem fee waiver</span></div>
+        <div><b>₹0</b><span>Test fee</span></div>
+        <div><b>88</b><span>Eligible universities</span></div>
+        <div><b>24×7</b><span>Take it anytime</span></div>
+      </div>
+    </div>
+
+    <div class="form-card" id="register">
+      <form id="regForm" novalidate>
+        <h2>Register for YDST 2026</h2>
+        <p class="sub">Takes 1 minute. Start your test right after.</p>
+        <div class="seg" role="tablist">
+          <button type="button" class="on" data-level="pg">Postgraduate</button>
+          <button type="button" data-level="ug">Undergraduate</button>
+        </div>
+        <label class="field">
+          <select id="program" required aria-label="Program"></select>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </label>
+        <label class="field"><span class="cc"><span class="flag"></span>+91</span><input id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="Phone number *" aria-label="Phone number"></label>
+        <label class="field"><input id="name" type="text" placeholder="Full name *" aria-label="Full name"></label>
+        <label class="field"><input id="email" type="email" placeholder="Email Id *" aria-label="Email"></label>
+        <button type="submit" class="submit" id="submitBtn">Register &amp; Start Test</button>
+        <p class="legal">By submitting this form, you agree to our <a href="#">Terms of Service</a> &amp; <a href="#">Privacy Policy</a> and to be contacted by us via Call/Email/WhatsApp/SMS.</p>
+      </form>
+      <div class="form-ok" id="formOk">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+        <h3>You're registered!</h3>
+        <p>This is a prototype. In production, OTP verification and the test would start here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust"><div class="wrap"><img src="assets/trust.png" alt="UGC-entitled programs only · NAAC A+ above universities · 1 Lac+ students counselled · Verified & secure admissions"></div></div>
+
+<section class="banner">
+  <div class="wrap"><img src="assets/hero-banner.jpg" alt="YDST Scholarship: 50% off Semester 1 tuition. Unlock at 170/200, valid for 30 days. Valid on any UG or PG online program at a university listed on YourDegree."></div>
+</section>
+
+<section class="wrap features">
+  <div class="feat"><div class="ic"><img src="assets/flash.svg" alt=""></div><h3>Instant<br>scholarship code</h3><p>Qualify and get your code right away, plus a call from your counsellor within 24 hours.</p></div>
+  <div class="feat"><div class="ic raw"><img src="assets/icon2.png" alt=""></div><h3>Your university,<br>your choice</h3><p>Use it at any of the universities on YourDegree. Your counsellor helps you compare them.</p></div>
+  <div class="feat"><div class="ic"><img src="assets/radar.svg" alt=""></div><h3>Fair for every<br>program</h3><p>Same pattern for everyone. Difficulty is matched to your program level, UG or PG.</p></div>
+  <div class="feat"><div class="ic"><img src="assets/repeat.svg" alt=""></div><h3>Didn't make it?<br>Try next month</h3><p>One attempt every month, with a brand-new paper each time.</p></div>
+</section>
+
+<section class="unis" id="unis">
+  <div class="wrap center">
+    <h2 class="section-title">Take your scholarship to<br><span class="accent">any university</span> on YourDegree</h2>
+    <p class="section-sub">Every university listed on YourDegree accepts the YDST scholarship. Here are some of them.</p>
+    <div class="uni-grid" id="uniGrid" style="text-align:left"></div>
+    <button class="more" id="moreBtn">+79 More Universities</button>
+  </div>
+</section>
+
+<section class="wrap busy">
+  <div class="busy-left">
+    <h2>Built for <span class="accent">busy</span> learners</h2>
+    <p>Free, unbiased guidance before you commit to a program or university.</p>
+    <a href="#register" class="btn">Register &amp; Start Test <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+  </div>
+  <div class="busy-grid">
+    <div><img src="assets/book.png" alt=""><h3>Anytime, anywhere</h3><p>Live 24×7. All you need is a laptop with a webcam.</p></div>
+    <div><img src="assets/book.png" alt=""><h3>AI-proctored</h3><p>Smart proctoring keeps every score fair.</p></div>
+    <div><img src="assets/book.png" alt=""><h3>Instant result</h3><p>Total and section-wise scores the moment you submit.</p></div>
+    <div><img src="assets/book.png" alt=""><h3>No negative marking</h3><p>Attempt every question. Wrong answers cost nothing.</p></div>
+  </div>
+</section>
+
+<section class="wrap structure">
+  <h2 class="section-title"><span class="accent">4</span> sections. <span class="accent">200</span> questions. <span class="accent">150</span> minutes.</h2>
+  <p class="section-sub">Every question carries 1 mark. The structure is the same for every program, and question difficulty is set by program level.</p>
+  <div class="struct-grid">
+    <div>
+      <div class="sec-row"><span>Logical Reasoning</span><b>75 Que</b></div>
+      <div class="sec-row"><span>Quantitative Aptitude</span><b>50 Que</b></div>
+      <div class="sec-row"><span>Verbal Ability &amp; Reading Comprehension</span><b>50 Que</b></div>
+      <div class="sec-row"><span>Abstract Reasoning</span><b>25 Que</b></div>
+      <div class="mini">
+        <div><b>+1 / 0</b><span>Marking (no negative)</span></div>
+        <div><b>170</b><span>Scholarship cutoff</span></div>
+      </div>
+    </div>
+    <div class="diff"><img src="assets/difficulty.jpg" alt="Difficulty by program: MBA, MCA Professional; MA, MCom Advanced; BBA, BCA Intermediate; BA, BCom Foundation"></div>
+  </div>
+  <div class="center" style="margin-top:54px"><a href="#register" class="btn">Register &amp; Start Test <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+</section>
+
+<section class="wrap prepare" id="prepare">
+  <h2 class="section-title">What to prepare</h2>
+  <p class="section-sub">Every topic in the paper, with roughly how many questions it carries.</p>
+  <div class="tabs">
+    <button class="on" data-prep="pg">Postgraduate Programs<small>MA · MCom · MBA · MCA</small></button>
+    <button data-prep="ug">Undergraduate Programs<small>BA · BCom · BBA · BCA</small></button>
+  </div>
+  <p class="meta"><b>200 MCQs</b> · 150 minutes · 1 mark each · no negative marking</p>
+  <div class="prep-grid">
+    <div class="sec-list" id="secList"></div>
+    <div class="topics" id="topics"></div>
+  </div>
+  <div class="center" style="margin-top:40px"><a href="#register" class="btn">Register &amp; Start Test <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+</section>
+
+<section class="steps">
+  <div class="wrap">
+    <h2 class="section-title">From sign-up to scholarship in 4 steps</h2>
+    <p class="section-sub">The whole journey takes under 3 hours, including the test.</p>
+    <div class="steps-grid">
+      <div><div class="n">01</div><h3>Register free</h3><p>Choose your program and verify your mobile and email with OTP.</p></div>
+      <div><div class="n">02</div><h3>Take the test</h3><p>Start whenever you like. Webcam on, full screen, 150 minutes.</p></div>
+      <div><div class="n">03</div><h3>Get your result</h3><p>Instant score. Hit 170+ and your scholarship code appears on screen.</p></div>
+      <div><div class="n">04</div><h3>Pick a university</h3><p>Enroll at any university on YourDegree within 30 days, at 50% off Semester 1.</p></div>
+    </div>
+    <div class="center" style="margin-top:42px"><a href="#register" class="btn">Register &amp; Start Test <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<section class="wrap tests">
+  <h2 class="section-title">Learners who made the cut</h2>
+  <p class="section-sub">Working professionals and fresh graduates who turned one test into a head start.</p>
+  <div class="test-grid">
+    <div class="tcard"><span class="q">&ldquo;</span><p>I took the test on a Sunday night after work. Choosing my own time made all the difference. I got my code on the result screen and enrolled the same week.</p><footer><div><b>Priya S.</b><small>Online MBA · Pune</small></div><span class="score">178/200</span></footer></div>
+    <div class="tcard dark"><span class="q">&ldquo;</span><p>I missed the cutoff by six marks the first time. The section scores showed me exactly where to work. A month later I cleared it with a new paper.</p><footer><div><b>Rohit K.</b><small>Online BCA · Jaipur</small></div><span class="score">174/200</span></footer></div>
+    <div class="tcard"><span class="q">&ldquo;</span><p>No negative marking meant I attempted every question. My counsellor called within a day and helped me compare universities before I enrolled.</p><footer><div><b>Ananya N.</b><small>Online MCom · Lucknow</small></div><span class="score">171/200</span></footer></div>
+  </div>
+</section>
+
+<section class="wrap gtk">
+  <h2 class="section-title">Good to know</h2>
+  <p class="section-sub">Simple rules that keep the scholarship fair for everyone.</p>
+  <div class="gtk-grid">
+    <div class="gtk-box">
+      <h3>You're eligible if</h3>
+      <ul>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>You're a new applicant to an online program at any university on YourDegree</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>You meet the admission criteria of the program you choose</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>You haven't used this month's attempt yet</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>You enroll within 30 days of qualifying, for the current intake</li>
+      </ul>
+    </div>
+    <div class="gtk-box alt">
+      <h3>Keep in mind</h3>
+      <ul>
+        <li><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg></span>Can't be combined with any other discount or offer</li>
+        <li><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg></span>Covers first-semester tuition only, not registration or exam fees</li>
+        <li><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg></span>Valid only for the program you tested for, and not transferable</li>
+        <li><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg></span>Unfair means flagged by proctoring void the scholarship</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-left">
+      <h2>Your questions,<br>answered</h2>
+      <p>Can't find what you're looking for?<br>Visit our <a href="#">Help Centre</a>.</p>
+    </div>
+    <div id="faqList"></div>
+  </div>
+</section>
+
+<section class="wrap cta">
+  <div class="cta-box">
+    <img src="assets/cta-banner.jpg" alt="Your 50% scholarship is one test away. Register free and start right now. The test is open 24×7.">
+    <a href="#register" class="cta-btn">Register free <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="f-top">
+      <div class="logo">Your<i>.</i><br>Degree</div>
+      <p>YourDegree is the 1st dedicated portal to provide counselling in finding the right university &amp; the right online degree program.</p>
+    </div>
+    <div class="f-cols" id="fcols1"></div>
+    <div class="f-cols" id="fcols2" style="border-bottom:1px solid rgba(255,255,255,.18)"></div>
+    <p class="copy">©2026 YourDegree. All rights reserved</p>
+  </div>
+</footer>
+
+<div class="modal" id="modal"><div><h3>Prototype</h3><p>Sign in isn't wired up in this prototype.</p><button class="btn" id="modalClose">Got it</button></div></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const chev='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m6 9 6 6 6-6"/></svg>';
+
+/* Menu + modal */
+$('#menuBtn').onclick=()=>$('#mobileMenu').classList.toggle('open');
+$$('#mobileMenu a').forEach(a=>a.onclick=()=>$('#mobileMenu').classList.remove('open'));
+$$('[data-modal]').forEach(b=>b.onclick=()=>$('#modal').classList.add('open'));
+$('#modalClose').onclick=()=>$('#modal').classList.remove('open');
+$('#modal').onclick=e=>{if(e.target.id==='modal')$('#modal').classList.remove('open')};
+
+/* Registration form */
+const programs={pg:['MBA','MCA','MA','MCom','MSc'],ug:['BBA','BCA','BA','BCom','BSc']};
+function fillPrograms(l){$('#program').innerHTML='<option value="" disabled selected hidden>Program</option>'+programs[l].map(p=>`<option>${p}</option>`).join('');$('#program').classList.remove('chosen');validate()}
+$$('.seg button').forEach(b=>b.onclick=()=>{$$('.seg button').forEach(x=>x.classList.toggle('on',x===b));fillPrograms(b.dataset.level)});
+fillPrograms('pg');
+function valid(){return $('#program').value && /^[6-9]\d{9}$/.test($('#phone').value) && $('#name').value.trim().length>1 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('#email').value)}
+function validate(){$('#submitBtn').classList.toggle('ready',!!valid())}
+$('#phone').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,10);validate()});
+['#name','#email'].forEach(s=>$(s).addEventListener('input',validate));
+$('#program').addEventListener('change',e=>{e.target.classList.add('chosen');validate()});
+$('#regForm').onsubmit=e=>{e.preventDefault();if(!valid())return;$('#regForm').style.display='none';$('#formOk').style.display='block'};
+
+/* Universities */
+const uni=(extra)=>`<div class="uni${extra?' extra':''}"><img src="assets/uni.png" alt=""><div><b>D.Y. Patil University</b><span>Mumbai, Maharashtra</span><br><em>NIRF 91</em></div></div>`;
+$('#uniGrid').innerHTML=Array.from({length:12},()=>uni(false)).join('')+Array.from({length:8},()=>uni(true)).join('');
+$('#moreBtn').onclick=()=>{const s=$('.unis');s.classList.toggle('all');$('#moreBtn').textContent=s.classList.contains('all')?'Show less':'+79 More Universities'};
+
+/* What to prepare */
+const sections={
+ lr:{name:'Logical Reasoning',q:75,t:'~55 min',topics:[
+  ['Series','Number series, letter series, missing term',12,1],['Coding-decoding','Letter shift, number and symbol coding',10,1],['Direction sense','Distance, final direction, shadows',8,1],['Blood relations','Family trees, coded relations',8],['Analogies','Word, number and letter analogies',8],['Odd one out','Numbers, words, letter groups',8],['Simple arrangements','Linear seating, ranking and order',8],['Alphabet test','Letter positions, ordering, word formation',7],['Syllogisms','Two-statement conclusions',6]]},
+ qa:{name:'Quantitative Aptitude',q:50,t:'~40 min',topics:[
+  ['Percentages','Increase, decrease, successive change',7,1],['Profit & loss','Cost price, discount, marked price',6,1],['Ratio & proportion','Mixtures, partnerships, ages',6,1],['Simple & compound interest','Rates, time, growth',5],['Time & work','Pipes, efficiency, wages',5],['Time, speed & distance','Trains, boats, relative speed',5],['Averages','Weighted average, replacement',5],['Number system','Divisibility, HCF and LCM',6],['Data interpretation','Tables, bar and pie charts',5]]},
+ va:{name:'Verbal Ability & RC',q:50,t:'~35 min',topics:[
+  ['Reading comprehension','Short passages, inference, main idea',14,1],['Grammar & error spotting','Tenses, agreement, prepositions',8,1],['Vocabulary','Synonyms, antonyms, word usage',8,1],['Sentence completion','Fill in the blanks, cloze test',7],['Para jumbles','Sentence ordering',6],['Idioms & phrases','Meaning and usage',7]]},
+ ar:{name:'Abstract Reasoning',q:25,t:'~20 min',topics:[
+  ['Figure series','Next figure in a sequence',6,1],['Pattern completion','Missing part of a figure',5,1],['Mirror & water images','Reflections of figures and text',5],['Figure classification','Odd figure out',5],['Paper folding & cutting','Unfolded patterns',4]]}
+};
+let cur='lr';
+function renderPrep(){
+  $('#secList').innerHTML=Object.entries(sections).map(([k,s])=>`<button class="${k===cur?'on':''}" data-sec="${k}"><div><b>${s.name}</b><small>${s.q} questions</small></div><span class="time">${s.t}<em>suggested</em></span></button>`).join('');
+  const s=sections[cur];
+  $('#topics').innerHTML=`<h3>${s.name} topics</h3>`+s.topics.map(([n,d,q,hw])=>`<div class="topic"><div><b>${n}</b>${hw?'<span class="hw">HIGH WEIGHT</span>':''}<small>${d}</small></div><strong>~${q} Qs</strong></div>`).join('')+`<div class="topic total"><b>Approximate questions in the full 200-question paper</b><strong>${s.q} <span>in total</span></strong></div>`;
+  $$('#secList button').forEach(b=>b.onclick=()=>{cur=b.dataset.sec;renderPrep()});
+}
+renderPrep();
+$$('.tabs button').forEach(b=>b.onclick=()=>{$$('.tabs button').forEach(x=>x.classList.toggle('on',x===b));renderPrep()});
+
+/* FAQ */
+const faqs=[
+ ['What is YDST?','The YourDegree Scholarship Test is a free online aptitude test. Score 170/200 or above and you get 50% off your first-semester tuition at any university on YourDegree.'],
+ ['How does YourDegree help students choose the right course?','Certified counsellors look at your goals, budget and background, then help you compare programs and universities side by side before you decide.'],
+ ['Is YourDegree connected with recognized universities?','Yes. We only list UGC-entitled online programs from NAAC-accredited universities.'],
+ ['Does YourDegree charge students for counselling?','No. Counselling on YourDegree is completely free, with no hidden costs.'],
+ ['Are EMI options available for online degree programs ?','Most universities on YourDegree offer no-cost or low-cost EMI options. Your counsellor can share the plans for the programs you shortlist.']];
+$('#faqList').innerHTML=faqs.map(([q,a],i)=>`<div class="qa${i===0?' open':''}"><button aria-expanded="${i===0}">${q}${chev}</button><div class="a"><div><p>${a}</p></div></div></div>`).join('');
+$$('.qa button').forEach(b=>b.onclick=()=>{const q=b.parentElement,o=q.classList.contains('open');$$('.qa').forEach(x=>{x.classList.remove('open');x.querySelector('button').setAttribute('aria-expanded','false')});if(!o){q.classList.add('open');b.setAttribute('aria-expanded','true')}});
+
+/* Footer */
+const col=(h,l)=>`<div><h4>${h}</h4>${l.map(x=>`<a href="#">${x}</a>`).join('')}</div>`;
+$('#fcols1').innerHTML=
+ col('Article',['Terms of use','Privacy Policy','End User Agreement','Disclaimer','Contact Us'])+
+ col('Online Degrees',['Online MBA','Online MCA','Online MA','Online MCom','Online MSc','Online MBA Plus','Online BBA','Online BCA','Online BA','Online BCom','Online BSc'])+
+ col('Top Universities',['D Y Patil University','Chandigarh University','Kurukshetra University','Andhra University','Bharathidasan University','Vivekananda Global University','Jain University','Centurion University','O.P. Jindal Global University'])+
+ col('Universities Offering MBA',['Online MBA at DY Patil University','Online MBA at Andhra University','Online MBA at Kurukshetra University','Online MBA at Jain University','Online MBA at Chandigarh University','Online MBA at Vivekananda Global University','Online MBA at Bharathidasan University']);
+$('#fcols2').innerHTML=
+ `<div class="span2"><h4>MBA Specializations</h4><div>${['MBA in Finance','MBA in Business Analytics','MBA in Human Resource Management','MBA in Operations Management','MBA in Marketing','MBA in Information Technology','MBA in Digital Marketing','MBA in Healthcare Management','MBA in Event Management','MBA in General Management'].map(x=>`<a href="#">${x}</a>`).join('')}</div><div>${['MBA in Project Management','MBA in Retail Management','MBA in Information Technology Management','MBA in Sales And Marketing','MBA in Finance and Marketing','MBA in Hospital and Healthcare Management','MBA in Logistics and Supply Chain Management','MBA in Data Science And Business Analytics','MBA in Banking and Finance'].map(x=>`<a href="#">${x}</a>`).join('')}</div></div>`+
+ col('UG Degree Specializations',['BBA in Finance','BBA in Hospital Management','BBA in Event Management','BBA in Human Resource Management','BBA in Marketing','BBA General','BBA in Marketing Management','BBA in Retail Operations','BBA in Investment Banking','BBA in Engineering And Project Management','BBA in Logistics and Supply Chain','BCom in Accounting and Finance','BCom in Accountancy','BA in Journalism and Mass Communication'])+
+ col('PG Degree Specializations',['MCA in Cyber Security','MCA General','MCA in Data Analytics','MA in Sociology','MA in Journalism and Mass Communication','MCom in Accounting and Finance','MSc in Data Science','MSc in Statistics','MBA in Sales And Marketing','MBA in Finance and Marketing','MBA in Hospital and Healthcare Management','MBA in Logistics and Supply Chain Management','MBA in Data Science And Business Analytics','MBA in Banking and Finance']);
+</script>
+</body>
+</html>
