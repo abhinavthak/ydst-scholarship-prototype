@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>YourDegree Scholarship Test (YDST 2026)</title>
-<meta name="description" content="Score 170 out of 200 and get 50% off your first-semester tuition at any university on YourDegree.">
+<meta name="description" content="Score 170 out of 200 and get 50% off your first-semester tuition at 18 partner universities on YourDegree.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -93,7 +93,9 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 .trust img{width:100%;max-width:1068px;margin:0 auto}
 
 /* Banner */
+.banner-box{position:relative;container-type:inline-size}
 .banner img{width:100%;border-radius:28px;box-shadow:0 4px 18px rgba(0,0,0,.12)}
+.banner-cap{position:absolute;left:0;width:48.6%;top:77.6%;text-align:center;color:rgba(255,255,255,.92);font-size:1.33cqw;line-height:1.45}
 
 /* Features */
 .features{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;padding-top:38px;padding-bottom:42px;text-align:center}
@@ -107,9 +109,10 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 /* Universities */
 .unis{background:var(--bg-soft);padding:54px 0 40px}
 .uni-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
-.uni{display:flex;align-items:center;gap:15px;background:#fff;border:1px solid #e6e6e6;border-radius:14px;padding:14px 16px}
-.uni img{width:30px}
-.uni b{display:block;font-weight:600;font-size:14px;letter-spacing:-.01em}
+.uni{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #e6e6e6;border-radius:14px;padding:14px 14px;min-height:84px}
+.uni-logo{flex:none;width:76px;height:52px;display:grid;place-items:center}
+.uni-logo img{max-width:76px;max-height:52px;width:auto;height:auto;object-fit:contain}
+.uni b{display:block;font-weight:600;font-size:14px;letter-spacing:-.01em;line-height:1.25;margin-bottom:3px}
 .uni span{font-size:11px;color:var(--muted)}
 .uni em{display:inline-block;font-style:normal;font-size:8.5px;font-weight:700;background:var(--tile);padding:2px 4px;border-radius:3px;margin-top:4px}
 .uni.extra{display:none}
@@ -323,11 +326,11 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
     <div>
       <div class="pill">Registrations open · YourDegree Scholarship Test</div>
       <h1>Scholarship Ka<br><span class="accent">Sabse Smart</span> Test</h1>
-      <p class="lead">Score 170 out of 200 and get <b>50% off your first-semester tuition</b> at any university on YourDegree. Free to take, open anytime, results in minutes.</p>
+      <p class="lead">Score 170 out of 200 and get <b>50% off your first-semester tuition</b> at 18 partner universities on YourDegree. Free to take, open anytime, results in minutes.</p>
       <div class="stats">
         <div><b>50%</b><span>First-sem fee waiver</span></div>
         <div><b>₹0</b><span>Test fee</span></div>
-        <div><b>88</b><span>Eligible universities</span></div>
+        <div><b>18</b><span>Partner universities</span></div>
         <div><b>24×7</b><span>Take it anytime</span></div>
       </div>
     </div>
@@ -362,22 +365,22 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 <div class="trust"><div class="wrap"><img src="assets/trust.png" alt="UGC-entitled programs only · NAAC A+ above universities · 1 Lac+ students counselled · Verified & secure admissions"></div></div>
 
 <section class="banner">
-  <div class="wrap"><img src="assets/hero-banner.jpg" alt="YDST Scholarship: 50% off Semester 1 tuition. Unlock at 170/200, valid for 30 days. Valid on any UG or PG online program at a university listed on YourDegree."></div>
+  <div class="wrap"><div class="banner-box"><img src="assets/hero-banner.jpg" alt="YDST Scholarship: 50% off Semester 1 tuition. Unlock at 170/200, valid for 30 days."><p class="banner-cap">Valid on any UG or PG online program at<br>one of our 18 partner universities.</p></div></div>
 </section>
 
 <section class="wrap features">
   <div class="feat"><div class="ic"><img src="assets/flash.svg" alt=""></div><h3>Instant<br>scholarship code</h3><p>Qualify and get your code right away, plus a call from your counsellor within 24 hours.</p></div>
-  <div class="feat"><div class="ic raw"><img src="assets/icon2.png" alt=""></div><h3>Your university,<br>your choice</h3><p>Use it at any of the universities on YourDegree. Your counsellor helps you compare them.</p></div>
+  <div class="feat"><div class="ic raw"><img src="assets/icon2.png" alt=""></div><h3>Your university,<br>your choice</h3><p>Use it at any of our 18 partner universities. Your counsellor helps you compare them.</p></div>
   <div class="feat"><div class="ic"><img src="assets/radar.svg" alt=""></div><h3>Fair for every<br>program</h3><p>Same pattern for everyone. Difficulty is matched to your program level, UG or PG.</p></div>
   <div class="feat"><div class="ic"><img src="assets/repeat.svg" alt=""></div><h3>Didn't make it?<br>Try next month</h3><p>One attempt every month, with a brand-new paper each time.</p></div>
 </section>
 
 <section class="unis" id="unis">
   <div class="wrap center">
-    <h2 class="section-title">Take your scholarship to<br><span class="accent">any university</span> on YourDegree</h2>
-    <p class="section-sub">Every university listed on YourDegree accepts the YDST scholarship. Here are some of them.</p>
+    <h2 class="section-title">Take your scholarship to<br><span class="accent">18 top universities</span> on YourDegree</h2>
+    <p class="section-sub">The YDST scholarship is accepted at these partner universities.</p>
     <div class="uni-grid" id="uniGrid" style="text-align:left"></div>
-    <button class="more" id="moreBtn">+79 More Universities</button>
+    <button class="more" id="moreBtn">+6 More Universities</button>
   </div>
 </section>
 
@@ -437,7 +440,7 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
       <div><div class="n">01</div><h3>Register free</h3><p>Choose your program and verify your mobile and email with OTP.</p></div>
       <div><div class="n">02</div><h3>Take the test</h3><p>Start whenever you like. Webcam on, full screen, 150 minutes.</p></div>
       <div><div class="n">03</div><h3>Get your result</h3><p>Instant score. Hit 170+ and your scholarship code appears on screen.</p></div>
-      <div><div class="n">04</div><h3>Pick a university</h3><p>Enroll at any university on YourDegree within 30 days, at 50% off Semester 1.</p></div>
+      <div><div class="n">04</div><h3>Pick a university</h3><p>Enroll at a partner university within 30 days, at 50% off Semester 1.</p></div>
     </div>
     <div class="center" style="margin-top:42px"><a href="#register" class="btn">Register &amp; Start Test <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
   </div>
@@ -460,7 +463,7 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
     <div class="gtk-box">
       <h3>You're eligible if</h3>
       <ul>
-        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>You're a new applicant to an online program at any university on YourDegree</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>You're a new applicant to an online program at one of the 18 partner universities</li>
         <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>You meet the admission criteria of the program you choose</li>
         <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>You haven't used this month's attempt yet</li>
         <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>You enroll within 30 days of qualifying, for the current intake</li>
@@ -534,9 +537,30 @@ $('#program').addEventListener('change',e=>{e.target.classList.add('chosen');val
 $('#regForm').onsubmit=e=>{e.preventDefault();if(!valid())return;$('#regForm').style.display='none';$('#formOk').style.display='block'};
 
 /* Universities */
-const uni=(extra)=>`<div class="uni${extra?' extra':''}"><img src="assets/uni.png" alt=""><div><b>D.Y. Patil University</b><span>Mumbai, Maharashtra</span><br><em>NIRF 91</em></div></div>`;
-$('#uniGrid').innerHTML=Array.from({length:12},()=>uni(false)).join('')+Array.from({length:8},()=>uni(true)).join('');
-$('#moreBtn').onclick=()=>{const s=$('.unis');s.classList.toggle('all');$('#moreBtn').textContent=s.classList.contains('all')?'Show less':'+79 More Universities'};
+const UNIS=[
+ ['D.Y. Patil University','Navi Mumbai, Maharashtra','dypatil.webp'],
+ ['Chandigarh University','Mohali, Punjab','chandigarh.webp'],
+ ['IIM Bangalore','Bengaluru, Karnataka','iimb.png'],
+ ['Alliance University','Bengaluru, Karnataka','alliance.png'],
+ ['GLA University','Mathura, Uttar Pradesh','gla.png'],
+ ['Manav Rachna','Faridabad, Haryana','manavrachna.png'],
+ ['The NorthCap University','Gurugram, Haryana','northcap.svg'],
+ ['SGT University','Gurugram, Haryana','sgt.png'],
+ ['Jaypee Institute of Information Technology','Noida, Uttar Pradesh','jiit.png'],
+ ['Atlas SkillTech University','Mumbai, Maharashtra','atlas.svg'],
+ ['Kurukshetra University','Kurukshetra, Haryana','kurukshetra.webp'],
+ ['Maharishi Markandeshwar University','Mullana, Haryana','mmu.png'],
+ ['Mohan Babu University','Tirupati, Andhra Pradesh','mbu.png'],
+ ['Kalasalingam Academy of Research and Education','Krishnankoil, Tamil Nadu','kalasalingam.png'],
+ ['Vels University (VISTAS)','Chennai, Tamil Nadu','vistas.png'],
+ ['Central University of Tamil Nadu','Thiruvarur, Tamil Nadu','cutn.png'],
+ ['Bharathidasan University','Tiruchirappalli, Tamil Nadu','bdu.png'],
+ ['Assam down town University','Guwahati, Assam','adtu.png']
+];
+const SHOW=12, moreLabel=`+${UNIS.length-SHOW} More Universities`;
+$('#uniGrid').innerHTML=UNIS.map(([n,l,img],i)=>`<div class="uni${i>=SHOW?' extra':''}"><div class="uni-logo"><img src="assets/uni/${img}" alt="${n} logo" loading="lazy"></div><div><b>${n.replace('&','&amp;')}</b><span>${l}</span></div></div>`).join('');
+$('#moreBtn').textContent=moreLabel;
+$('#moreBtn').onclick=()=>{const s=$('.unis');s.classList.toggle('all');$('#moreBtn').textContent=s.classList.contains('all')?'Show less':moreLabel};
 
 /* What to prepare */
 const sections={
@@ -561,7 +585,7 @@ $$('.tabs button').forEach(b=>b.onclick=()=>{$$('.tabs button').forEach(x=>x.cla
 
 /* FAQ */
 const faqs=[
- ['What is YDST?','The YourDegree Scholarship Test is a free online aptitude test. Score 170/200 or above and you get 50% off your first-semester tuition at any university on YourDegree.'],
+ ['What is YDST?','The YourDegree Scholarship Test is a free online aptitude test. Score 170/200 or above and you get 50% off your first-semester tuition at any of our 18 partner universities.'],
  ['How does YourDegree help students choose the right course?','Certified counsellors look at your goals, budget and background, then help you compare programs and universities side by side before you decide.'],
  ['Is YourDegree connected with recognized universities?','Yes. We only list UGC-entitled online programs from NAAC-accredited universities.'],
  ['Does YourDegree charge students for counselling?','No. Counselling on YourDegree is completely free, with no hidden costs.'],
