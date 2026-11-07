@@ -114,6 +114,7 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 .trust{padding:8px 0 28px}
 .trust-list{list-style:none;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px 32px;max-width:1000px;margin:0 auto}
 .trust-list img{height:26px;width:auto}
+.trust-list .clone{display:none}
 
 /* Banner */
 .banner img{width:100%;height:auto;border-radius:28px;box-shadow:0 4px 18px rgba(0,0,0,.12)}
@@ -318,7 +319,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
 :focus-visible{outline:2px solid var(--red);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-@media (max-width:600px) and (prefers-reduced-motion:reduce){.stats{overflow-x:auto}.stats .clone{display:none}}
+@media (max-width:600px) and (prefers-reduced-motion:reduce){.stats,.trust .wrap{overflow-x:auto}.stats .clone,.trust-list .clone{display:none}}
 
 @media (max-width:960px){
   .hero{padding:28px 0 40px}
@@ -374,10 +375,14 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
   .legal{font-size:11px}
   .field-err{font-size:12px}
   /* trust */
+  /* trust badges: auto-scrolling strip */
   .trust{padding:4px 0 20px}
-  .trust-list{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px}
-  .trust-list li{display:flex;justify-content:center}
-  .trust-list img{height:auto;width:100%;max-width:160px}
+  .trust .wrap{overflow:hidden;padding:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .trust-list{display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:0;width:max-content;max-width:none;margin:0;animation:statsScroll 18s linear infinite}
+  .trust-list li{flex:none;padding:0 22px}
+  .trust-list .clone{display:block}
+  .trust-list img{height:24px;width:auto;max-width:none}
+  .trust:hover .trust-list,.trust:active .trust-list{animation-play-state:paused}
   /* banner */
   .banner img{border-radius:20px}
   /* features: 2x2 compact */
@@ -580,7 +585,7 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
   </div>
 </section>
 
-<div class="trust"><div class="wrap"><ul class="trust-list" aria-label="Why trust YourDegree"><li><img src="assets/trust-1.png" alt="UGC-entitled programs only"></li><li><img src="assets/trust-2.png" alt="NAAC A+ and above universities"></li><li><img src="assets/trust-3.png" alt="1 Lac+ students counselled"></li><li><img src="assets/trust-4.png" alt="Verified and secure admissions"></li></ul></div></div>
+<div class="trust"><div class="wrap"><ul class="trust-list" aria-label="Why trust YourDegree"><li><img src="assets/trust-1.png" alt="UGC-entitled programs only"></li><li><img src="assets/trust-2.png" alt="NAAC A+ and above universities"></li><li><img src="assets/trust-3.png" alt="1 Lac+ students counselled"></li><li><img src="assets/trust-4.png" alt="Verified and secure admissions"></li><li class="clone" aria-hidden="true"><img src="assets/trust-1.png" alt="" data-alt="UGC-entitled programs only"></li><li class="clone" aria-hidden="true"><img src="assets/trust-2.png" alt="" data-alt="NAAC A+ and above universities"></li><li class="clone" aria-hidden="true"><img src="assets/trust-3.png" alt="" data-alt="1 Lac+ students counselled"></li><li class="clone" aria-hidden="true"><img src="assets/trust-4.png" alt="" data-alt="Verified and secure admissions"></li></ul></div></div>
 
 <section class="banner">
   <div class="wrap"><div class="banner-box"><picture><source media="(max-width:600px)" srcset="assets/hero-banner-m.jpg" width="780" height="1009"><img src="assets/hero-banner-v2.jpg" alt="YDST Scholarship: 50% off Semester 1 tuition. Unlock at 51/60, valid for 30 days. Valid on any UG or PG online program at one of our 18 partner universities." width="2132" height="732"></picture></div></div>
