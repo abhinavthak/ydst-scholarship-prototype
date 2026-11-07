@@ -54,7 +54,7 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 
 /* Hero */
 .hero{padding:40px 0 64px}
-.hero-grid{display:grid;grid-template-columns:1fr 350px;gap:48px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:48px;align-items:center}
 .pill{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink-2);margin-bottom:12px}
 .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
 .hero h1{font-size:47px;line-height:1.1;font-weight:600;letter-spacing:-.025em}
@@ -290,7 +290,8 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 @media (max-width:960px){
   .nav-links{display:none}
   .nav-right{margin-left:auto}
-  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:36px}
+  .hero-grid > *{min-width:0}
   .form-card{max-width:440px;width:100%;margin:0 auto}
   .features,.steps-grid{grid-template-columns:1fr 1fr;gap:32px}
   .uni-grid{grid-template-columns:1fr 1fr}
