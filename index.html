@@ -67,7 +67,8 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 .form-card{background:#fff;border-radius:22px;box-shadow:0 0 0 1px #e6e6e6,0 4px 16px rgba(0,0,0,.06);padding:16px 18px 18px}
 .form-card h2{font-size:20px;font-weight:600;text-align:center;letter-spacing:-.01em}
 .form-card .sub{font-size:12px;text-align:center;margin-top:4px;color:var(--ink-2)}
-.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--tile);border-radius:999px;padding:3px;margin:14px 0 14px}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--tile);border-radius:999px;padding:3px;margin:10px 0 8px}
+#phoneField{margin-top:14px}
 .seg button{height:34px;border-radius:999px;font-size:12px;color:var(--muted);transition:.15s}
 .seg button.on{background:#fff;color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .field{display:flex;align-items:center;height:35px;border:1px solid #dcdcdc;border-radius:4px;margin-bottom:5px;padding:0 9px;font-size:12px;background:#fff}
@@ -79,7 +80,7 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 .field .cc{display:flex;align-items:center;gap:4px;color:var(--muted);padding-right:8px;margin-right:8px;border-right:1px solid #dcdcdc;height:14px}
 .flag{width:13px;height:13px;border-radius:50%;background:linear-gradient(#f93 0 33%,#fff 33% 66%,#128807 66%);position:relative}
 .flag::after{content:"";position:absolute;inset:4.5px;border-radius:50%;background:#000080}
-.submit{width:100%;height:37px;margin-top:66px;border-radius:4px;background:#999;color:#fff;font-weight:600;font-size:14px;cursor:not-allowed;transition:background .15s}
+.submit{width:100%;height:37px;margin-top:58px;border-radius:4px;background:#999;color:#fff;font-weight:600;font-size:14px;cursor:not-allowed;transition:background .15s}
 .otp-on .submit{margin-top:14px}
 .field .verified,.field .change{display:none}
 .field.ok{border-color:#9fd9bc;background:#f6fcf9}
@@ -112,12 +113,7 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 .trust img{width:100%;max-width:1068px;margin:0 auto}
 
 /* Banner */
-.banner-box{position:relative;container-type:inline-size}
 .banner img{width:100%;border-radius:28px;box-shadow:0 4px 18px rgba(0,0,0,.12)}
-.banner-unlock{position:absolute;left:66.1%;top:25.4%;transform:translate(-50%,-50%);color:#fff;white-space:nowrap;display:flex;align-items:baseline;gap:.45em;font-weight:600}
-.banner-unlock b{font-size:3.6cqw;font-weight:600;letter-spacing:-.01em;line-height:1}
-.banner-unlock span{font-size:1.6cqw;font-weight:500}
-.banner-cap{position:absolute;left:0;width:48.6%;top:77.6%;text-align:center;color:rgba(255,255,255,.92);font-size:1.33cqw;line-height:1.45}
 
 /* Features */
 .features{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;padding-top:38px;padding-bottom:42px;text-align:center}
@@ -363,14 +359,6 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
       <form id="regForm" novalidate>
         <h2>Register for YDST 2026</h2>
         <p class="sub">Takes 1 minute. Start your test right after.</p>
-        <div class="seg" role="tablist">
-          <button type="button" class="on" data-level="pg">Postgraduate</button>
-          <button type="button" data-level="ug">Undergraduate</button>
-        </div>
-        <label class="field">
-          <select id="program" required aria-label="Program"></select>
-          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-        </label>
         <label class="field" id="phoneField"><span class="cc"><span class="flag"></span>+91</span><input id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="Phone number *" aria-label="Phone number" autocomplete="tel-national"><span class="verified" id="phoneOk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Verified</span><button type="button" class="change" id="phoneChange">Change</button></label>
         <p class="field-err" id="phoneErr">Enter a valid 10-digit mobile number</p>
         <div class="otp" id="otpBox" aria-live="polite">
@@ -380,6 +368,14 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
           </div>
           <p class="otp-foot"><span id="otpMsg">Didn't get it? <span id="otpTimer">Resend in 30s</span><button type="button" id="otpResend">Resend OTP</button></span></p>
         </div>
+        <div class="seg" role="tablist">
+          <button type="button" class="on" data-level="pg">Postgraduate</button>
+          <button type="button" data-level="ug">Undergraduate</button>
+        </div>
+        <label class="field">
+          <select id="program" required aria-label="Program"></select>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </label>
         <label class="field"><input id="name" type="text" placeholder="Full name *" aria-label="Full name"></label>
         <label class="field"><input id="email" type="email" placeholder="Email Id *" aria-label="Email"></label>
         <button type="submit" class="submit" id="submitBtn">Register &amp; Start Test</button>
@@ -397,7 +393,7 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 <div class="trust"><div class="wrap"><img src="assets/trust.png" alt="UGC-entitled programs only · NAAC A+ above universities · 1 Lac+ students counselled · Verified & secure admissions"></div></div>
 
 <section class="banner">
-  <div class="wrap"><div class="banner-box"><img src="assets/hero-banner.jpg" alt="YDST Scholarship: 50% off Semester 1 tuition. Unlock at 51/60, valid for 30 days."><div class="banner-unlock"><b>51</b><span>/ 60</span></div><p class="banner-cap">Valid on any UG or PG online program at<br>one of our 18 partner universities.</p></div></div>
+  <div class="wrap"><div class="banner-box"><img src="assets/hero-banner-v2.jpg" alt="YDST Scholarship: 50% off Semester 1 tuition. Unlock at 51/60, valid for 30 days. Valid on any UG or PG online program at one of our 18 partner universities."></div></div>
 </section>
 
 <section class="wrap features">
@@ -624,7 +620,7 @@ function verifyOtp(){
     $('#phone').readOnly=true; $('#phoneField').classList.add('ok');
     $('#otpMsg').innerHTML=`Didn't get it? <span id="otpTimer"></span><button type="button" id="otpResend">Resend OTP</button>`;
     $('#otpResend').onclick=sendOtp;
-    validate(); $('#name').focus();
+    validate(); $('#program').focus();
   },700);
 }
 otpInputs.forEach((inp,i)=>{
