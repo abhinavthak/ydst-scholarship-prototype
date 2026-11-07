@@ -61,6 +61,8 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 .hero p.lead{margin-top:18px;font-size:14px;color:var(--ink-2);max-width:510px;line-height:1.5}
 .hero p.lead b{font-weight:600;color:var(--ink)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;max-width:600px}
+.stats-track{display:contents}
+.stats .clone{display:none}
 .stats b{display:block;font-size:26px;font-weight:600;letter-spacing:-.01em}
 .stats span{font-size:12px;color:var(--muted)}
 
@@ -90,6 +92,7 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 .field-err.show{display:block}
 .otp{display:none;background:var(--bg-soft);border-radius:8px;padding:10px 10px 8px;margin:2px 0 6px;animation:otpIn .2s ease-out}
 .otp.show{display:block}
+@keyframes statsScroll{to{transform:translateX(-50%)}}
 @keyframes otpIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .otp-head{font-size:11px;color:var(--ink-2);margin-bottom:8px}
 .otp-head b{color:var(--ink);font-weight:600}
@@ -315,6 +318,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
 :focus-visible{outline:2px solid var(--red);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:600px) and (prefers-reduced-motion:reduce){.stats{overflow-x:auto}.stats .clone{display:none}}
 
 @media (max-width:960px){
   .hero{padding:28px 0 40px}
@@ -344,9 +348,14 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
   /* hero */
   .hero h1{font-size:clamp(30px,9vw,38px)}
   .hero p.lead{font-size:15px}
-  .stats{gap:18px 12px;margin-top:28px}
-  .stats b{font-size:24px}
-  .stats span{font-size:12.5px}
+  /* stats: auto-scrolling strip */
+  .stats{display:block;max-width:none;overflow:hidden;margin:24px -16px 0;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .stats-track{display:flex;width:max-content;animation:statsScroll 14s linear infinite}
+  .stats-track > div{display:flex;align-items:baseline;gap:8px;padding:0 22px;border-right:1px solid var(--line);white-space:nowrap}
+  .stats .clone{display:flex}
+  .stats b{display:inline;font-size:22px}
+  .stats span{font-size:13px}
+  .stats:hover .stats-track,.stats:active .stats-track{animation-play-state:paused}
   .hero-grid{gap:28px}
   /* form: 16px inputs stop iOS zoom, 44px+ targets */
   .form-card{padding:18px 16px;border-radius:20px}
@@ -492,7 +501,6 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
 }
 @media (max-width:360px){
   .features,.busy-grid,.uni-grid{grid-template-columns:1fr}
-  .stats{grid-template-columns:1fr 1fr}
   .tabs button small{display:none}
 }
 </style>
@@ -528,11 +536,12 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
       <div class="pill">Registrations open · YourDegree Scholarship Test</div>
       <h1>Scholarship Ka<br><span class="accent">Sabse Smart</span> Test</h1>
       <p class="lead">Score 51 out of 60 and get <b>50% off your first-semester tuition</b> at 18 partner universities on YourDegree. Free to take, open anytime, results in minutes.</p>
-      <div class="stats">
+      <div class="stats"><div class="stats-track">
         <div><b>50%</b><span>First-sem fee waiver</span></div>
         <div><b>₹0</b><span>Test fee</span></div>
         <div><b>18</b><span>Partner universities</span></div>
         <div><b>24×7</b><span>Take it anytime</span></div>
+        <div class="clone" aria-hidden="true"><b>50%</b><span>First-sem fee waiver</span></div><div class="clone" aria-hidden="true"><b>₹0</b><span>Test fee</span></div><div class="clone" aria-hidden="true"><b>18</b><span>Partner universities</span></div><div class="clone" aria-hidden="true"><b>24×7</b><span>Take it anytime</span></div></div>
       </div>
     </div>
 
