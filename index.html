@@ -80,6 +80,25 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 .flag{width:13px;height:13px;border-radius:50%;background:linear-gradient(#f93 0 33%,#fff 33% 66%,#128807 66%);position:relative}
 .flag::after{content:"";position:absolute;inset:4.5px;border-radius:50%;background:#000080}
 .submit{width:100%;height:37px;margin-top:66px;border-radius:4px;background:#999;color:#fff;font-weight:600;font-size:14px;cursor:not-allowed;transition:background .15s}
+.otp-on .submit{margin-top:14px}
+.field .verified,.field .change{display:none}
+.field.ok{border-color:#9fd9bc;background:#f6fcf9}
+.field.ok .verified{display:inline-flex;align-items:center;gap:4px;color:var(--green);font-size:11px;font-weight:600;margin-right:8px}
+.field.ok .verified svg{width:12px;height:12px}
+.field.ok .change{display:inline;font-size:11px;font-weight:600;color:var(--red);text-decoration:underline}
+.field-err{display:none;color:#c4202f;font-size:10.5px;margin:-2px 0 5px 2px}
+.field-err.show{display:block}
+.otp{display:none;background:var(--bg-soft);border-radius:8px;padding:10px 10px 8px;margin:2px 0 6px;animation:otpIn .2s ease-out}
+.otp.show{display:block}
+@keyframes otpIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.otp-head{font-size:11px;color:var(--ink-2);margin-bottom:8px}
+.otp-head b{color:var(--ink);font-weight:600}
+.otp-inputs{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.otp-inputs input{width:100%;height:36px;border:1px solid #d6d6d6;border-radius:6px;text-align:center;font:inherit;font-size:16px;font-weight:600;color:var(--ink);background:#fff;outline:0;min-width:0}
+.otp-inputs input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(193,53,21,.12)}
+.otp-inputs input:disabled{opacity:.6}
+.otp-foot{font-size:10.5px;color:var(--muted);margin-top:7px}
+.otp-foot button{display:none;color:var(--red);font-weight:600;font-size:10.5px;text-decoration:underline;margin-left:2px}
 .submit.ready{background:var(--red);cursor:pointer}
 .submit.ready:hover{background:var(--red-dark)}
 .legal{font-size:9px;text-align:center;color:var(--ink-2);margin-top:8px;line-height:1.35}
@@ -352,7 +371,15 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
           <select id="program" required aria-label="Program"></select>
           <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
         </label>
-        <label class="field"><span class="cc"><span class="flag"></span>+91</span><input id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="Phone number *" aria-label="Phone number"></label>
+        <label class="field" id="phoneField"><span class="cc"><span class="flag"></span>+91</span><input id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="Phone number *" aria-label="Phone number" autocomplete="tel-national"><span class="verified" id="phoneOk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Verified</span><button type="button" class="change" id="phoneChange">Change</button></label>
+        <p class="field-err" id="phoneErr">Enter a valid 10-digit mobile number</p>
+        <div class="otp" id="otpBox" aria-live="polite">
+          <p class="otp-head">Enter the 6-digit OTP sent to <b id="otpTo"></b></p>
+          <div class="otp-inputs" id="otpInputs">
+            <input inputmode="numeric" maxlength="1" aria-label="OTP digit 1" autocomplete="one-time-code"><input inputmode="numeric" maxlength="1" aria-label="OTP digit 2"><input inputmode="numeric" maxlength="1" aria-label="OTP digit 3"><input inputmode="numeric" maxlength="1" aria-label="OTP digit 4"><input inputmode="numeric" maxlength="1" aria-label="OTP digit 5"><input inputmode="numeric" maxlength="1" aria-label="OTP digit 6">
+          </div>
+          <p class="otp-foot"><span id="otpMsg">Didn't get it? <span id="otpTimer">Resend in 30s</span><button type="button" id="otpResend">Resend OTP</button></span></p>
+        </div>
         <label class="field"><input id="name" type="text" placeholder="Full name *" aria-label="Full name"></label>
         <label class="field"><input id="email" type="email" placeholder="Email Id *" aria-label="Email"></label>
         <button type="submit" class="submit" id="submitBtn">Register &amp; Start Test</button>
@@ -561,9 +588,70 @@ const programs={pg:['MBA','MCA','MA','MCom','MSc'],ug:['BBA','BCA','BA','BCom','
 function fillPrograms(l){$('#program').innerHTML='<option value="" disabled selected hidden>Program</option>'+programs[l].map(p=>`<option>${p}</option>`).join('');$('#program').classList.remove('chosen');validate()}
 $$('.seg button').forEach(b=>b.onclick=()=>{$$('.seg button').forEach(x=>x.classList.toggle('on',x===b));fillPrograms(b.dataset.level)});
 fillPrograms('pg');
-function valid(){return $('#program').value && /^[6-9]\d{9}$/.test($('#phone').value) && $('#name').value.trim().length>1 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('#email').value)}
+let phoneVerified=false, otpTimerId=null;
+const otpInputs=$$('#otpInputs input');
+function valid(){return $('#program').value && phoneVerified && $('#name').value.trim().length>1 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('#email').value)}
 function validate(){$('#submitBtn').classList.toggle('ready',!!valid())}
-$('#phone').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,10);validate()});
+function startResendTimer(){
+  let s=30; clearInterval(otpTimerId);
+  $('#otpTimer').style.display='inline'; $('#otpResend').style.display='none';
+  $('#otpTimer').textContent=`Resend in ${s}s`;
+  otpTimerId=setInterval(()=>{s--; if(s<=0){clearInterval(otpTimerId);$('#otpTimer').style.display='none';$('#otpResend').style.display='inline'} else $('#otpTimer').textContent=`Resend in ${s}s`},1000);
+}
+function sendOtp(){
+  const p=$('#phone').value;
+  $('#otpTo').textContent=`+91 ${p.slice(0,5)} ${p.slice(5)}`;
+  otpInputs.forEach(i=>{i.value='';i.classList.remove('err')});
+  $('#otpMsg').classList.remove('bad');
+  $('#otpBox').classList.add('show'); $('#regForm').classList.add('otp-on');
+  startResendTimer(); otpInputs[0].focus();
+}
+function resetPhone(){
+  phoneVerified=false; clearInterval(otpTimerId);
+  $('#phone').readOnly=false; $('#phoneField').classList.remove('ok');
+  $('#otpBox').classList.remove('show'); $('#regForm').classList.remove('otp-on'); validate();
+}
+function verifyOtp(){
+  const code=otpInputs.map(i=>i.value).join('');
+  if(code.length<6) return;
+  clearInterval(otpTimerId);
+  otpInputs.forEach(i=>i.disabled=true);
+  $('#otpMsg').textContent='Verifying…';
+  setTimeout(()=>{ // prototype: any 6-digit code is accepted
+    otpInputs.forEach(i=>i.disabled=false);
+    phoneVerified=true; clearInterval(otpTimerId);
+    $('#otpBox').classList.remove('show'); $('#regForm').classList.remove('otp-on');
+    $('#phone').readOnly=true; $('#phoneField').classList.add('ok');
+    $('#otpMsg').innerHTML=`Didn't get it? <span id="otpTimer"></span><button type="button" id="otpResend">Resend OTP</button>`;
+    $('#otpResend').onclick=sendOtp;
+    validate(); $('#name').focus();
+  },700);
+}
+otpInputs.forEach((inp,i)=>{
+  inp.addEventListener('input',()=>{
+    const v=inp.value.replace(/\D/g,'');
+    if(v.length>1){ // pasted or autofilled full code
+      v.slice(0,6).split('').forEach((d,j)=>{if(otpInputs[j])otpInputs[j].value=d});
+      otpInputs[Math.min(v.length,6)-1].focus();
+    } else { inp.value=v; if(v&&i<5) otpInputs[i+1].focus(); }
+    verifyOtp();
+  });
+  inp.addEventListener('keydown',e=>{
+    if(e.key==='Backspace'&&!inp.value&&i>0){otpInputs[i-1].focus();otpInputs[i-1].value='';e.preventDefault()}
+    if(e.key==='ArrowLeft'&&i>0)otpInputs[i-1].focus();
+    if(e.key==='ArrowRight'&&i<5)otpInputs[i+1].focus();
+  });
+  inp.addEventListener('focus',()=>inp.select());
+});
+$('#otpResend').onclick=sendOtp;
+$('#phoneChange').onclick=()=>{resetPhone();$('#phone').value='';$('#phone').focus()};
+$('#phone').addEventListener('input',e=>{
+  e.target.value=e.target.value.replace(/\D/g,'').slice(0,10);
+  const v=e.target.value, ok=/^[6-9]\d{9}$/.test(v);
+  $('#phoneErr').classList.toggle('show',v.length===10&&!ok || (v.length>0&&!/^[6-9]/.test(v)));
+  if(ok&&!phoneVerified) sendOtp(); else if(!ok) resetPhone();
+  validate();
+});
 ['#name','#email'].forEach(s=>$(s).addEventListener('input',validate));
 $('#program').addEventListener('change',e=>{e.target.classList.add('chosen');validate()});
 $('#regForm').onsubmit=e=>{e.preventDefault();if(!valid())return;$('#regForm').style.display='none';$('#formOk').style.display='block'};
