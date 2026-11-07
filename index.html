@@ -435,7 +435,8 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
   .tabs button{flex:1;padding:0 8px;height:60px;font-size:14px}
   .tabs button small{font-size:10.5px}
   .meta{margin:22px 0 10px;font-size:12.5px}
-  .sec-list{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;background:none;padding:2px 2px 8px;margin:0 -16px;padding-left:16px;padding-right:16px;scrollbar-width:none}
+  .sec-list{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:16px;background:none;padding:2px 16px 10px;margin:0 -16px;scrollbar-width:none}
+  .sec-list::after{content:"";flex:0 0 8px}
   .sec-list::-webkit-scrollbar{display:none}
   .sec-list button{flex:none;width:auto;scroll-snap-align:start;background:var(--tile);border-radius:999px;padding:10px 16px;min-height:48px}
   .sec-list button b{font-size:14px;white-space:nowrap}
@@ -589,7 +590,7 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
 <div class="trust"><div class="wrap"><ul class="trust-list" aria-label="Why trust YourDegree"><li><img src="assets/trust-1.png" alt="UGC-entitled programs only"></li><li><img src="assets/trust-2.png" alt="NAAC A+ and above universities"></li><li><img src="assets/trust-3.png" alt="1 Lac+ students counselled"></li><li><img src="assets/trust-4.png" alt="Verified and secure admissions"></li><li class="clone" aria-hidden="true"><img src="assets/trust-1.png" alt="" data-alt="UGC-entitled programs only"></li><li class="clone" aria-hidden="true"><img src="assets/trust-2.png" alt="" data-alt="NAAC A+ and above universities"></li><li class="clone" aria-hidden="true"><img src="assets/trust-3.png" alt="" data-alt="1 Lac+ students counselled"></li><li class="clone" aria-hidden="true"><img src="assets/trust-4.png" alt="" data-alt="Verified and secure admissions"></li></ul></div></div>
 
 <section class="banner">
-  <div class="wrap"><div class="banner-box"><picture><source media="(max-width:600px)" srcset="assets/hero-banner-m.jpg" width="780" height="1009"><img src="assets/hero-banner-v2.jpg" alt="YDST Scholarship: 50% off Semester 1 tuition. Unlock at 51/60, valid for 30 days. Valid on any UG or PG online program at one of our 18 partner universities." width="2132" height="732"></picture></div></div>
+  <div class="wrap"><div class="banner-box"><picture><source media="(max-width:600px)" srcset="assets/hero-banner-m2.jpg" width="780" height="1009"><img src="assets/hero-banner-v2.jpg" alt="YDST Scholarship: 50% off Semester 1 tuition. Unlock at 51/60, valid for 30 days. Valid on any UG or PG online program at one of our 18 partner universities." width="2132" height="732"></picture></div></div>
 </section>
 
 <section class="wrap features">
