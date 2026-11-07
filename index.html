@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>YourDegree Scholarship Test (YDST 2026)</title>
-<meta name="description" content="Score 170 out of 200 and get 50% off your first-semester tuition at 18 partner universities on YourDegree.">
+<meta name="description" content="Score 51 out of 60 and get 50% off your first-semester tuition at 18 partner universities on YourDegree.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -95,6 +95,9 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 /* Banner */
 .banner-box{position:relative;container-type:inline-size}
 .banner img{width:100%;border-radius:28px;box-shadow:0 4px 18px rgba(0,0,0,.12)}
+.banner-unlock{position:absolute;left:66.1%;top:25.4%;transform:translate(-50%,-50%);color:#fff;white-space:nowrap;display:flex;align-items:baseline;gap:.45em;font-weight:600}
+.banner-unlock b{font-size:3.6cqw;font-weight:600;letter-spacing:-.01em;line-height:1}
+.banner-unlock span{font-size:1.6cqw;font-weight:500}
 .banner-cap{position:absolute;left:0;width:48.6%;top:77.6%;text-align:center;color:rgba(255,255,255,.92);font-size:1.33cqw;line-height:1.45}
 
 /* Features */
@@ -148,7 +151,7 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 .mini div{background:var(--bg-soft);border-radius:8px;text-align:center;padding:22px 10px 18px}
 .mini b{display:block;font-size:26px;font-weight:600}
 .mini span{font-size:16px;font-weight:500;color:var(--ink-2)}
-.diff img{width:100%;border-radius:28px}
+.diff svg{display:block;width:100%;height:auto;border-radius:28px;font-family:inherit}
 
 /* Prepare */
 .prepare{padding-top:80px;padding-bottom:40px}
@@ -168,6 +171,8 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 .sec-list button.on{background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.12)}
 .sec-list button.on .time{display:block}
 .topics h3{font-size:19px;font-weight:600;letter-spacing:-.01em;padding:12px 14px 18px}
+.topics h3 .lv{display:inline-block;vertical-align:3px;margin-left:10px;font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;letter-spacing:.02em}
+.lv-m{background:#fdf3d7;color:#8a5a00}.lv-b{background:#dff3e8;color:#0b7a4b}
 .topic{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border-bottom:1px solid var(--line)}
 .topic b{font-weight:500;font-size:13px}
 .topic small{display:block;font-size:11px;color:var(--muted);margin-top:3px}
@@ -288,7 +293,7 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
   .f-cols,.f-cols .span2{grid-template-columns:1fr}
   .f-cols .span2{grid-column:auto}
   .f-top{flex-direction:column}
-  .banner img,.diff img{border-radius:16px}
+  .banner img,.diff svg{border-radius:16px}
   .cta-box img{border-radius:14px}
   .cta-box .cta-btn{position:static;margin:12px auto 0;width:max-content;height:42px;font-size:14px;background:var(--red);color:#fff;width:auto;padding:0 24px}
   .trust{overflow-x:auto}
@@ -326,7 +331,7 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
     <div>
       <div class="pill">Registrations open · YourDegree Scholarship Test</div>
       <h1>Scholarship Ka<br><span class="accent">Sabse Smart</span> Test</h1>
-      <p class="lead">Score 170 out of 200 and get <b>50% off your first-semester tuition</b> at 18 partner universities on YourDegree. Free to take, open anytime, results in minutes.</p>
+      <p class="lead">Score 51 out of 60 and get <b>50% off your first-semester tuition</b> at 18 partner universities on YourDegree. Free to take, open anytime, results in minutes.</p>
       <div class="stats">
         <div><b>50%</b><span>First-sem fee waiver</span></div>
         <div><b>₹0</b><span>Test fee</span></div>
@@ -365,13 +370,13 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 <div class="trust"><div class="wrap"><img src="assets/trust.png" alt="UGC-entitled programs only · NAAC A+ above universities · 1 Lac+ students counselled · Verified & secure admissions"></div></div>
 
 <section class="banner">
-  <div class="wrap"><div class="banner-box"><img src="assets/hero-banner.jpg" alt="YDST Scholarship: 50% off Semester 1 tuition. Unlock at 170/200, valid for 30 days."><p class="banner-cap">Valid on any UG or PG online program at<br>one of our 18 partner universities.</p></div></div>
+  <div class="wrap"><div class="banner-box"><img src="assets/hero-banner.jpg" alt="YDST Scholarship: 50% off Semester 1 tuition. Unlock at 51/60, valid for 30 days."><div class="banner-unlock"><b>51</b><span>/ 60</span></div><p class="banner-cap">Valid on any UG or PG online program at<br>one of our 18 partner universities.</p></div></div>
 </section>
 
 <section class="wrap features">
   <div class="feat"><div class="ic"><img src="assets/flash.svg" alt=""></div><h3>Instant<br>scholarship code</h3><p>Qualify and get your code right away, plus a call from your counsellor within 24 hours.</p></div>
   <div class="feat"><div class="ic raw"><img src="assets/icon2.png" alt=""></div><h3>Your university,<br>your choice</h3><p>Use it at any of our 18 partner universities. Your counsellor helps you compare them.</p></div>
-  <div class="feat"><div class="ic"><img src="assets/radar.svg" alt=""></div><h3>Fair for every<br>program</h3><p>Same pattern for everyone. Difficulty is matched to your program level, UG or PG.</p></div>
+  <div class="feat"><div class="ic"><img src="assets/radar.svg" alt=""></div><h3>Fair for every<br>program</h3><p>Same pattern for everyone. Difficulty is matched to your degree level, bachelor's or master's.</p></div>
   <div class="feat"><div class="ic"><img src="assets/repeat.svg" alt=""></div><h3>Didn't make it?<br>Try next month</h3><p>One attempt every month, with a brand-new paper each time.</p></div>
 </section>
 
@@ -399,20 +404,47 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 </section>
 
 <section class="wrap structure">
-  <h2 class="section-title"><span class="accent">4</span> sections. <span class="accent">200</span> questions. <span class="accent">150</span> minutes.</h2>
-  <p class="section-sub">Every question carries 1 mark. The structure is the same for every program, and question difficulty is set by program level.</p>
+  <h2 class="section-title"><span class="accent">4</span> sections. <span class="accent">60</span> questions. <span class="accent">60</span> minutes.</h2>
+  <p class="section-sub">Every question carries 1 mark. The structure is the same for every program, and difficulty is set by degree level: bachelor's or master's.</p>
   <div class="struct-grid">
     <div>
-      <div class="sec-row"><span>Logical Reasoning</span><b>75 Que</b></div>
-      <div class="sec-row"><span>Quantitative Aptitude</span><b>50 Que</b></div>
-      <div class="sec-row"><span>Verbal Ability &amp; Reading Comprehension</span><b>50 Que</b></div>
-      <div class="sec-row"><span>Abstract Reasoning</span><b>25 Que</b></div>
+      <div class="sec-row"><span>Logical Reasoning</span><b>20 Que</b></div>
+      <div class="sec-row"><span>Quantitative Aptitude</span><b>15 Que</b></div>
+      <div class="sec-row"><span>Verbal Ability &amp; Reading Comprehension</span><b>15 Que</b></div>
+      <div class="sec-row"><span>Abstract Reasoning</span><b>10 Que</b></div>
       <div class="mini">
         <div><b>+1 / 0</b><span>Marking (no negative)</span></div>
-        <div><b>170</b><span>Scholarship cutoff</span></div>
+        <div><b>51</b><span>Scholarship cutoff</span></div>
       </div>
     </div>
-    <div class="diff"><img src="assets/difficulty.jpg" alt="Difficulty by program: MBA, MCA Professional; MA, MCom Advanced; BBA, BCA Intermediate; BA, BCom Foundation"></div>
+    <div class="diff">
+      <svg viewBox="0 0 506 388" role="img" aria-labelledby="diffT diffD">
+        <title id="diffT">Difficulty by degree level</title>
+        <desc id="diffD">Master's programs (MBA, MCA, MA, MCom) get an advanced paper. Bachelor's programs (BBA, BCA, BA, BCom) get a foundation paper.</desc>
+        <defs>
+          <clipPath id="dclip"><rect width="506" height="388" rx="28"/></clipPath>
+          <radialGradient id="gM" cx="45%" cy="20%" r="80%"><stop offset="0" stop-color="#6b4220"/><stop offset=".55" stop-color="#3b2214"/><stop offset="1" stop-color="#140c08"/></radialGradient>
+          <radialGradient id="gB" cx="45%" cy="15%" r="85%"><stop offset="0" stop-color="#2f5a52"/><stop offset=".6" stop-color="#18302c"/><stop offset="1" stop-color="#0c1513"/></radialGradient>
+          <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></linearGradient>
+        </defs>
+        <g clip-path="url(#dclip)">
+          <rect width="506" height="388" fill="#000"/>
+          <circle cx="120" cy="400" r="270" fill="url(#gM)" stroke="#a87a4e" stroke-opacity=".45" stroke-width="1.5"/>
+          <circle cx="95" cy="420" r="185" fill="url(#gB)" stroke="#5fa898" stroke-opacity=".45" stroke-width="1.5"/>
+          <rect width="506" height="388" fill="url(#fade)"/>
+          <text x="253" y="36" text-anchor="middle" fill="#fff" font-size="17" font-weight="600">Difficulty by degree level</text>
+          <text x="253" y="58" text-anchor="middle" fill="#cfcfcf" font-size="11.5">Your paper is matched to the degree level you choose at registration.</text>
+          <line x1="300" y1="185" x2="344" y2="185" stroke="#f2c14e" stroke-width="1"/><circle cx="300" cy="185" r="3" fill="#f2c14e"/>
+          <text x="465" y="168" text-anchor="end" fill="#fff" font-size="13" font-weight="600">MBA, MCA, MA, MCom</text>
+          <rect x="347" y="176" width="120" height="20" rx="10" fill="#3a2f12" stroke="#f2c14e" stroke-opacity=".55"/>
+          <text x="407" y="190" text-anchor="middle" fill="#f6d36b" font-size="10.5" font-weight="500">Master's · Advanced</text>
+          <line x1="200" y1="300" x2="344" y2="300" stroke="#2fbf86" stroke-width="1"/><circle cx="200" cy="300" r="3" fill="#2fbf86"/>
+          <text x="465" y="283" text-anchor="end" fill="#fff" font-size="13" font-weight="600">BBA, BCA, BA, BCom</text>
+          <rect x="347" y="291" width="120" height="20" rx="10" fill="#0d2a20" stroke="#2fbf86" stroke-opacity=".55"/>
+          <text x="407" y="305" text-anchor="middle" fill="#5fe0a8" font-size="10" font-weight="500">Bachelor's · Foundation</text>
+        </g>
+      </svg>
+    </div>
   </div>
   <div class="center" style="margin-top:54px"><a href="#register" class="btn">Register &amp; Start Test <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
 </section>
@@ -421,10 +453,10 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
   <h2 class="section-title">What to prepare</h2>
   <p class="section-sub">Every topic in the paper, with roughly how many questions it carries.</p>
   <div class="tabs">
-    <button class="on" data-prep="pg">Postgraduate Programs<small>MA · MCom · MBA · MCA</small></button>
-    <button data-prep="ug">Undergraduate Programs<small>BA · BCom · BBA · BCA</small></button>
+    <button class="on" data-prep="pg">Master's Programs<small>MA · MCom · MBA · MCA</small></button>
+    <button data-prep="ug">Bachelor's Programs<small>BA · BCom · BBA · BCA</small></button>
   </div>
-  <p class="meta"><b>200 MCQs</b> · 150 minutes · 1 mark each · no negative marking</p>
+  <p class="meta"><b>60 MCQs</b> · 60 minutes · 1 mark each · no negative marking</p>
   <div class="prep-grid">
     <div class="sec-list" id="secList"></div>
     <div class="topics" id="topics"></div>
@@ -435,11 +467,11 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 <section class="steps">
   <div class="wrap">
     <h2 class="section-title">From sign-up to scholarship in 4 steps</h2>
-    <p class="section-sub">The whole journey takes under 3 hours, including the test.</p>
+    <p class="section-sub">The whole journey takes under 2 hours, including the test.</p>
     <div class="steps-grid">
       <div><div class="n">01</div><h3>Register free</h3><p>Choose your program and verify your mobile and email with OTP.</p></div>
-      <div><div class="n">02</div><h3>Take the test</h3><p>Start whenever you like. Webcam on, full screen, 150 minutes.</p></div>
-      <div><div class="n">03</div><h3>Get your result</h3><p>Instant score. Hit 170+ and your scholarship code appears on screen.</p></div>
+      <div><div class="n">02</div><h3>Take the test</h3><p>Start whenever you like. Webcam on, full screen, 60 minutes.</p></div>
+      <div><div class="n">03</div><h3>Get your result</h3><p>Instant score. Hit 51+ and your scholarship code appears on screen.</p></div>
       <div><div class="n">04</div><h3>Pick a university</h3><p>Enroll at a partner university within 30 days, at 50% off Semester 1.</p></div>
     </div>
     <div class="center" style="margin-top:42px"><a href="#register" class="btn">Register &amp; Start Test <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
@@ -450,9 +482,9 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
   <h2 class="section-title">Learners who made the cut</h2>
   <p class="section-sub">Working professionals and fresh graduates who turned one test into a head start.</p>
   <div class="test-grid">
-    <div class="tcard"><span class="q">&ldquo;</span><p>I took the test on a Sunday night after work. Choosing my own time made all the difference. I got my code on the result screen and enrolled the same week.</p><footer><div><b>Priya S.</b><small>Online MBA · Pune</small></div><span class="score">178/200</span></footer></div>
-    <div class="tcard dark"><span class="q">&ldquo;</span><p>I missed the cutoff by six marks the first time. The section scores showed me exactly where to work. A month later I cleared it with a new paper.</p><footer><div><b>Rohit K.</b><small>Online BCA · Jaipur</small></div><span class="score">174/200</span></footer></div>
-    <div class="tcard"><span class="q">&ldquo;</span><p>No negative marking meant I attempted every question. My counsellor called within a day and helped me compare universities before I enrolled.</p><footer><div><b>Ananya N.</b><small>Online MCom · Lucknow</small></div><span class="score">171/200</span></footer></div>
+    <div class="tcard"><span class="q">&ldquo;</span><p>I took the test on a Sunday night after work. Choosing my own time made all the difference. I got my code on the result screen and enrolled the same week.</p><footer><div><b>Priya S.</b><small>Online MBA · Pune</small></div><span class="score">57/60</span></footer></div>
+    <div class="tcard dark"><span class="q">&ldquo;</span><p>I missed the cutoff by three marks the first time. The section scores showed me exactly where to work. A month later I cleared it with a new paper.</p><footer><div><b>Rohit K.</b><small>Online BCA · Jaipur</small></div><span class="score">54/60</span></footer></div>
+    <div class="tcard"><span class="q">&ldquo;</span><p>No negative marking meant I attempted every question. My counsellor called within a day and helped me compare universities before I enrolled.</p><footer><div><b>Ananya N.</b><small>Online MCom · Lucknow</small></div><span class="score">52/60</span></footer></div>
   </div>
 </section>
 
@@ -564,28 +596,29 @@ $('#moreBtn').onclick=()=>{const s=$('.unis');s.classList.toggle('all');$('#more
 
 /* What to prepare */
 const sections={
- lr:{name:'Logical Reasoning',q:75,t:'~55 min',topics:[
-  ['Series','Number series, letter series, missing term',12,1],['Coding-decoding','Letter shift, number and symbol coding',10,1],['Direction sense','Distance, final direction, shadows',8,1],['Blood relations','Family trees, coded relations',8],['Analogies','Word, number and letter analogies',8],['Odd one out','Numbers, words, letter groups',8],['Simple arrangements','Linear seating, ranking and order',8],['Alphabet test','Letter positions, ordering, word formation',7],['Syllogisms','Two-statement conclusions',6]]},
- qa:{name:'Quantitative Aptitude',q:50,t:'~40 min',topics:[
-  ['Percentages','Increase, decrease, successive change',7,1],['Profit & loss','Cost price, discount, marked price',6,1],['Ratio & proportion','Mixtures, partnerships, ages',6,1],['Simple & compound interest','Rates, time, growth',5],['Time & work','Pipes, efficiency, wages',5],['Time, speed & distance','Trains, boats, relative speed',5],['Averages','Weighted average, replacement',5],['Number system','Divisibility, HCF and LCM',6],['Data interpretation','Tables, bar and pie charts',5]]},
- va:{name:'Verbal Ability & RC',q:50,t:'~35 min',topics:[
-  ['Reading comprehension','Short passages, inference, main idea',14,1],['Grammar & error spotting','Tenses, agreement, prepositions',8,1],['Vocabulary','Synonyms, antonyms, word usage',8,1],['Sentence completion','Fill in the blanks, cloze test',7],['Para jumbles','Sentence ordering',6],['Idioms & phrases','Meaning and usage',7]]},
- ar:{name:'Abstract Reasoning',q:25,t:'~20 min',topics:[
-  ['Figure series','Next figure in a sequence',6,1],['Pattern completion','Missing part of a figure',5,1],['Mirror & water images','Reflections of figures and text',5],['Figure classification','Odd figure out',5],['Paper folding & cutting','Unfolded patterns',4]]}
+ lr:{name:'Logical Reasoning',q:20,t:'~20 min',topics:[
+  ['Series','Number series, letter series, missing term',3,1],['Coding-decoding','Letter shift, number and symbol coding',3,1],['Direction sense','Distance, final direction, shadows',2,1],['Blood relations','Family trees, coded relations',2],['Analogies','Word, number and letter analogies',2],['Odd one out','Numbers, words, letter groups',2],['Simple arrangements','Linear seating, ranking and order',2],['Alphabet test','Letter positions, ordering, word formation',2],['Syllogisms','Two-statement conclusions',2]]},
+ qa:{name:'Quantitative Aptitude',q:15,t:'~15 min',topics:[
+  ['Percentages','Increase, decrease, successive change',2,1],['Profit & loss','Cost price, discount, marked price',2,1],['Ratio & proportion','Mixtures, partnerships, ages',2,1],['Simple & compound interest','Rates, time, growth',2],['Time, speed & distance','Trains, boats, relative speed',2],['Number system','Divisibility, HCF and LCM',2],['Time & work','Pipes, efficiency, wages',1],['Averages','Weighted average, replacement',1],['Data interpretation','Tables, bar and pie charts',1]]},
+ va:{name:'Verbal Ability & RC',q:15,t:'~15 min',topics:[
+  ['Reading comprehension','Short passages, inference, main idea',4,1],['Grammar & error spotting','Tenses, agreement, prepositions',3,1],['Vocabulary','Synonyms, antonyms, word usage',2,1],['Sentence completion','Fill in the blanks, cloze test',2],['Para jumbles','Sentence ordering',2],['Idioms & phrases','Meaning and usage',2]]},
+ ar:{name:'Abstract Reasoning',q:10,t:'~10 min',topics:[
+  ['Figure series','Next figure in a sequence',2,1],['Pattern completion','Missing part of a figure',2,1],['Mirror & water images','Reflections of figures and text',2],['Figure classification','Odd figure out',2],['Paper folding & cutting','Unfolded patterns',2]]}
 };
-let cur='lr';
+let cur='lr', level='pg';
+const LEVELS={pg:{label:"Master's level",cls:'lv-m'},ug:{label:"Bachelor's level",cls:'lv-b'}};
 function renderPrep(){
   $('#secList').innerHTML=Object.entries(sections).map(([k,s])=>`<button class="${k===cur?'on':''}" data-sec="${k}"><div><b>${s.name}</b><small>${s.q} questions</small></div><span class="time">${s.t}<em>suggested</em></span></button>`).join('');
-  const s=sections[cur];
-  $('#topics').innerHTML=`<h3>${s.name} topics</h3>`+s.topics.map(([n,d,q,hw])=>`<div class="topic"><div><b>${n}</b>${hw?'<span class="hw">HIGH WEIGHT</span>':''}<small>${d}</small></div><strong>~${q} Qs</strong></div>`).join('')+`<div class="topic total"><b>Approximate questions in the full 200-question paper</b><strong>${s.q} <span>in total</span></strong></div>`;
+  const s=sections[cur], L=LEVELS[level];
+  $('#topics').innerHTML=`<h3>${s.name} topics <span class="lv ${L.cls}">${L.label} difficulty</span></h3>`+s.topics.map(([n,d,q,hw])=>`<div class="topic"><div><b>${n}</b>${hw?'<span class="hw">HIGH WEIGHT</span>':''}<small>${d}</small></div><strong>~${q} ${q===1?"Q":"Qs"}</strong></div>`).join('')+`<div class="topic total"><b>Approximate questions in the full 60-question paper</b><strong>${s.q} <span>in total</span></strong></div>`;
   $$('#secList button').forEach(b=>b.onclick=()=>{cur=b.dataset.sec;renderPrep()});
 }
 renderPrep();
-$$('.tabs button').forEach(b=>b.onclick=()=>{$$('.tabs button').forEach(x=>x.classList.toggle('on',x===b));renderPrep()});
+$$('.tabs button').forEach(b=>b.onclick=()=>{$$('.tabs button').forEach(x=>x.classList.toggle('on',x===b));level=b.dataset.prep;renderPrep()});
 
 /* FAQ */
 const faqs=[
- ['What is YDST?','The YourDegree Scholarship Test is a free online aptitude test. Score 170/200 or above and you get 50% off your first-semester tuition at any of our 18 partner universities.'],
+ ['What is YDST?','The YourDegree Scholarship Test is a free online aptitude test. Score 51/60 or above and you get 50% off your first-semester tuition at any of our 18 partner universities.'],
  ['How does YourDegree help students choose the right course?','Certified counsellors look at your goals, budget and background, then help you compare programs and universities side by side before you decide.'],
  ['Is YourDegree connected with recognized universities?','Yes. We only list UGC-entitled online programs from NAAC-accredited universities.'],
  ['Does YourDegree charge students for counselling?','No. Counselling on YourDegree is completely free, with no hidden costs.'],
