@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Profile · YDST 2026</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout: same header as the scholarship page; profile = header band (P1) + main column (P2–P5) + side column (P6) */
+  --red:#c13515; --red-dark:#a92c10; --maroon:#581000;
+  --ink:#1a1d21; --ink-2:#3d4148; --muted:#5f636b; --line:#e3e3e3; --line-2:#efefef;
+  --bg:#ffffff; --bg-soft:#f7f7f7; --tile:#f2f2f2;
+  --green:#0b7a4b; --green-bg:#e3f4ea; --amber:#9a5b00; --amber-bg:#fdf0d8; --err:#b42318; --err-bg:#fde7e3;
+  --t15:#f2b8a5; --t30:#e0704f; --t50:#a8300f; --t0:#d9d7d3;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Google Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg-soft);-webkit-font-smoothing:antialiased;line-height:1.45;font-size:14px}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+
+/* Header (matches scholarship page) */
+header{background:var(--bg-soft);position:sticky;top:0;z-index:30;border-bottom:1px solid var(--line-2)}
+.nav{display:flex;align-items:center;height:68px;gap:18px}
+.logo{font-weight:600;font-size:20px;line-height:1.05;color:var(--maroon);letter-spacing:-.01em}
+.logo i{font-style:normal;color:var(--red)}
+.back{font-size:14px;font-weight:500;color:var(--ink-2);display:flex;align-items:center;gap:6px}
+.back:hover{color:var(--ink)}
+.back svg{width:16px;height:16px}
+.me{margin-left:auto;position:relative}
+.me-btn{display:flex;align-items:center;gap:8px;height:38px;padding:0 6px 0 14px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px #ececec;font-weight:500}
+.me-btn .av{width:28px;height:28px;font-size:11px}
+.me-menu{position:absolute;right:0;top:46px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.08);min-width:180px;padding:6px}
+.me-menu[hidden]{display:none}
+.me-menu button,.me-menu a{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:8px;font-size:14px}
+.me-menu button:hover,.me-menu a:hover{background:var(--bg-soft)}
+.av{border-radius:50%;display:grid;place-items:center;font-weight:600;background:#fde7e3;color:var(--maroon);flex:none}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 26px;border-radius:999px;background:var(--red);color:#fff;font-weight:600;font-size:14px;transition:background .15s}
+.btn:hover{background:var(--red-dark)}
+.btn:disabled{background:#999;cursor:not-allowed}
+.btn.ghost{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.btn.ghost:hover{background:var(--bg-soft)}
+.btn svg{width:16px;height:16px}
+.link{color:var(--red);font-weight:600;font-size:13px}
+.link:hover{text-decoration:underline}
+
+/* Sign in */
+.signin-wrap{min-height:calc(100vh - 69px);display:grid;place-items:center;padding:40px 16px}
+.signin-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px 26px;width:100%;max-width:400px}
+.signin-card h1{font-size:22px;font-weight:600;letter-spacing:-.01em;text-align:center}
+.signin-card .sub{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+.field{display:flex;align-items:center;height:44px;border:1px solid var(--line);border-radius:8px;margin-top:18px;background:#fff;padding:0 12px;gap:8px}
+.field:focus-within{border-color:var(--ink-2)}
+.field .cc{font-size:14px;color:var(--ink-2);padding-right:8px;border-right:1px solid var(--line)}
+.field input{border:0;outline:0;flex:1;min-width:0;height:100%;font-size:14px;background:transparent}
+.otp{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:16px}
+.otp input{height:46px;text-align:center;font-size:18px;font-weight:600;border:1px solid var(--line);border-radius:8px;outline:0}
+.otp input:focus{border-color:var(--ink-2)}
+.signin-card .btn{width:100%;margin-top:16px}
+.hint{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+.err{font-size:12px;color:var(--err);margin-top:6px}
+.signin-card .alt{font-size:13px;color:var(--muted);text-align:center;margin-top:18px}
+.signin-card .alt a{color:var(--red);font-weight:600}
+
+/* Profile */
+.p1{background:#fff;border-bottom:1px solid var(--line-2)}
+.p1 .wrap{display:flex;align-items:center;gap:16px;padding-top:26px;padding-bottom:26px;flex-wrap:wrap}
+.p1 .av{width:56px;height:56px;font-size:19px}
+.p1 h1{font-size:24px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.p1 p{color:var(--muted);font-size:13px;margin-top:2px}
+.p1 .edit{margin-left:auto}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;padding-top:22px;padding-bottom:50px;align-items:start}
+.col{display:grid;gap:16px;min-width:0}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;min-width:0}
+.card-h{display:flex;align-items:center;gap:10px;padding:16px 18px 0}
+.card-h h2{font-size:16px;font-weight:600}
+.card-h .r{margin-left:auto;font-size:12px;color:var(--muted)}
+.card-b{padding:14px 18px 18px}
+
+/* P2 next step */
+.next{display:flex;gap:18px;align-items:center;padding:22px;flex-wrap:wrap;border-radius:16px}
+.next .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;flex:none}
+.next .ic svg{width:24px;height:24px}
+.next .tx{flex:1;min-width:200px}
+.next .eyebrow{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.next h2{font-size:19px;font-weight:600;letter-spacing:-.01em;margin-top:2px}
+.next p{font-size:13px;color:var(--ink-2);margin-top:3px}
+.tone-red .ic{background:#fde7e3;color:var(--red)}
+.tone-green .ic{background:var(--green-bg);color:var(--green)}
+.tone-amber .ic{background:var(--amber-bg);color:var(--amber)}
+.tone-grey .ic{background:var(--tile);color:var(--ink-2)}
+
+/* P3 code */
+.code-card{background:linear-gradient(140deg,#3a0b05 0%,#7a1a0b 55%,#c13515 100%);color:#fff;border:0;overflow:hidden}
+.code-card .card-b{padding:20px 22px 22px}
+.code-top{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.code-top .pct{font-size:46px;font-weight:700;line-height:1;letter-spacing:-.03em}
+.code-top .pct small{font-size:16px;font-weight:600;margin-left:4px;color:#f3d2c8}
+.code-top .lbl{font-size:12px;color:#f3d2c8;margin-top:6px}
+.code-box{margin-left:auto;background:rgba(255,255,255,.12);border:1px dashed rgba(255,255,255,.45);border-radius:12px;padding:10px 12px 10px 16px;display:flex;align-items:center;gap:10px}
+.code-box code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:18px;font-weight:600;letter-spacing:.06em}
+.code-box button{height:32px;padding:0 12px;border-radius:999px;background:#fff;color:var(--maroon);font-weight:600;font-size:12px}
+.code-meta{display:flex;gap:8px 22px;flex-wrap:wrap;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);font-size:13px;color:#f3d2c8}
+.code-meta b{color:#fff;font-weight:600}
+.days{height:6px;border-radius:3px;background:rgba(255,255,255,.2);margin-top:12px;overflow:hidden}
+.days span{display:block;height:100%;background:#fff;border-radius:3px}
+.other-codes{margin-top:12px;font-size:12px;color:#f3d2c8}
+
+/* Tables */
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 18px;border-bottom:1px solid var(--line-2);white-space:nowrap}
+.tbl td{padding:12px 18px;border-bottom:1px solid var(--line-2);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .num{font-variant-numeric:tabular-nums}
+.score{display:flex;align-items:center;gap:8px}
+.score b{font-weight:600;min-width:42px;white-space:nowrap}
+.score b small{color:var(--muted);font-weight:500;font-size:11px}
+.sbar{width:70px;height:6px;border-radius:3px;background:var(--tile);overflow:hidden;flex:none}
+.sbar span{display:block;height:100%;border-radius:3px}
+.tag{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 9px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.tag i{width:8px;height:8px;border-radius:2px}
+.tag.plain{border:1px solid var(--line)}
+.tag.ok{background:var(--green-bg);color:var(--green)}
+.tag.bad{background:var(--err-bg);color:var(--err)}
+.tag.wait{background:var(--amber-bg);color:var(--amber)}
+.tag.grey{background:var(--tile);color:var(--ink-2)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+.muted{color:var(--muted)}
+.empty{padding:22px 18px;color:var(--muted);font-size:13px}
+.rcpt{font-weight:600;font-size:12px;color:var(--red);display:inline-flex;align-items:center;gap:5px}
+.rcpt svg{width:14px;height:14px}
+.rcpt:hover{text-decoration:underline}
+
+/* P6 details */
+.form{display:grid;gap:12px}
+.form label{display:grid;gap:5px;font-size:12px;font-weight:500;color:var(--muted)}
+.form input,.form select{height:40px;border:1px solid var(--line);border-radius:8px;padding:0 10px;background:#fff;font-size:14px;color:var(--ink);width:100%}
+.form input:focus,.form select:focus{outline:0;border-color:var(--ink-2)}
+.form input[readonly]{background:var(--bg-soft);color:var(--muted)}
+.form .locked{font-size:11px;color:var(--amber);font-weight:500}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--tile);border-radius:999px;padding:3px}
+.seg button{height:32px;border-radius:999px;font-size:13px;font-weight:500;color:var(--muted)}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.seg button:disabled{cursor:not-allowed}
+.toggle{display:flex!important;align-items:flex-start;gap:10px;font-size:13px!important;color:var(--ink-2)!important;font-weight:400!important;line-height:1.4}
+.toggle input{width:18px;height:18px;margin-top:1px;accent-color:var(--red);flex:none}
+.form .btn{height:40px;margin-top:4px}
+.fee-note{font-size:12px;color:var(--muted);background:var(--bg-soft);border-radius:10px;padding:10px 12px;line-height:1.5}
+.fee-note b{color:var(--ink)}
+
+/* Prototype state switcher */
+.demo{position:fixed;left:16px;bottom:16px;z-index:40;background:var(--ink);color:#fff;border-radius:12px;padding:10px 12px;font-size:12px;box-shadow:0 8px 24px rgba(0,0,0,.2);display:flex;align-items:center;gap:8px;max-width:calc(100% - 32px)}
+.demo select{background:#2b2f35;color:#fff;border:0;border-radius:6px;height:30px;padding:0 6px;font-size:12px;min-width:0}
+.demo b{font-weight:600;white-space:nowrap}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;opacity:0;transition:.2s;pointer-events:none;z-index:60;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+[hidden]{display:none!important}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .nav{height:60px}
+  .logo{font-size:17px}
+  .back span{display:none}
+  .p1 .edit{margin-left:0;width:100%}
+  .code-box{margin-left:0;width:100%;justify-content:space-between}
+  .next .btn{width:100%}
+  .tbl thead{display:none}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block}
+  .tbl tr{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:12px 18px;border-bottom:1px solid var(--line-2)}
+  .tbl tr:last-child{border-bottom:0}
+  .tbl td{padding:0;border:0}
+  .tbl td.c2{grid-column:1/-1}
+  .tbl .hide-sm{display:none}
+  .demo{left:8px;right:8px;bottom:8px;max-width:none}
+  .demo b{display:none}
+  .demo select{flex:1}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo">Your<i>.</i><br>Degree</a>
+    <a href="index.html" class="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18 9 12l6-6"/></svg><span>Scholarship test</span></a>
+    <div class="me" id="me" hidden>
+      <button class="me-btn" id="meBtn" aria-haspopup="menu" aria-expanded="false"><span id="meName">Profile</span><span class="av" id="meAv"></span></button>
+      <div class="me-menu" id="meMenu" role="menu" hidden>
+        <a href="#details" role="menuitem">Edit details</a>
+        <button id="signOut" role="menuitem">Sign out</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Sign in -->
+<main id="signin" class="signin-wrap" hidden>
+  <form class="signin-card" id="signinForm" novalidate>
+    <h1>Sign in to YDST</h1>
+    <p class="sub">Use the mobile number you registered with.</p>
+    <label class="field" for="mob"><span class="cc">+91</span><input id="mob" type="tel" inputmode="numeric" maxlength="10" placeholder="Mobile number" autocomplete="tel-national"></label>
+    <p class="err" id="mobErr" hidden>Enter a valid 10-digit mobile number</p>
+    <div id="otpStep" hidden>
+      <p class="hint" style="margin-top:14px">Enter the 6-digit OTP sent to <b id="otpTo"></b></p>
+      <div class="otp" id="otp">
+        <input inputmode="numeric" maxlength="1" aria-label="OTP digit 1" autocomplete="one-time-code"><input inputmode="numeric" maxlength="1" aria-label="OTP digit 2"><input inputmode="numeric" maxlength="1" aria-label="OTP digit 3"><input inputmode="numeric" maxlength="1" aria-label="OTP digit 4"><input inputmode="numeric" maxlength="1" aria-label="OTP digit 5"><input inputmode="numeric" maxlength="1" aria-label="OTP digit 6">
+      </div>
+    </div>
+    <button class="btn" id="signinBtn" type="submit">Send OTP</button>
+    <p class="hint">Prototype: any 6-digit OTP works.</p>
+    <p class="alt">New here? <a href="index.html#register">Register for YDST</a></p>
+  </form>
+</main>
+
+<!-- Profile -->
+<div id="profile" hidden>
+  <section class="p1" aria-label="Your details">
+    <div class="wrap">
+      <span class="av" id="p1Av"></span>
+      <div>
+        <h1 id="p1Name"></h1>
+        <p id="p1Meta"></p>
+      </div>
+      <a href="#details" class="btn ghost edit">Edit details</a>
+    </div>
+  </section>
+
+  <main class="wrap grid">
+    <div class="col">
+      <section class="card next" id="p2" aria-live="polite"></section>
+      <section class="card code-card" id="p3" aria-label="Scholarship code"></section>
+      <section class="card" id="p4" aria-labelledby="p4h">
+        <div class="card-h"><h2 id="p4h">Test history</h2><span class="r" id="p4r"></span></div>
+        <div id="p4b"></div>
+      </section>
+      <section class="card" id="p5" aria-labelledby="p5h">
+        <div class="card-h"><h2 id="p5h">Payments and receipts</h2></div>
+        <div id="p5b"></div>
+      </section>
+    </div>
+    <div class="col">
+      <section class="card" id="details" aria-labelledby="p6h">
+        <div class="card-h"><h2 id="p6h">Your details</h2></div>
+        <form class="card-b form" id="detailsForm" novalidate>
+          <label>Mobile<input id="dMob" readonly></label>
+          <label>Full name<input id="dName" autocomplete="name"></label>
+          <label>Email<input id="dEmail" type="email" autocomplete="email"></label>
+          <label>Level<span class="seg" id="dLevel"><button type="button" data-l="pg">Postgraduate</button><button type="button" data-l="ug">Undergraduate</button></span></label>
+          <label>Programme<select id="dProg"></select><span class="locked" id="progLock" hidden>You can change this after your test</span></label>
+          <label class="toggle"><input type="checkbox" id="dConsent">Contact me on WhatsApp and SMS about programmes and offers</label>
+          <button class="btn" type="submit">Save</button>
+        </form>
+      </section>
+      <section class="card">
+        <div class="card-b fee-note" id="feeNote" style="margin:14px;padding:12px 14px"></div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="demo" id="demo" hidden>
+  <b>Prototype · preview state</b>
+  <select id="demoState" aria-label="Preview state">
+    <option value="unpaid">Registered, not paid</option>
+    <option value="pending">Payment pending</option>
+    <option value="ready">Paid, test ready</option>
+    <option value="progress">Test in progress</option>
+    <option value="limit">Attempt used, below 31</option>
+    <option value="code" selected>Active scholarship code</option>
+    <option value="enrolled">Enrolled</option>
+    <option value="refunded">Refunded</option>
+  </select>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const store={get(k){try{return JSON.parse(sessionStorage.getItem(k))}catch(e){return null}},set(k,v){try{sessionStorage.setItem(k,JSON.stringify(v))}catch(e){}},del(k){try{sessionStorage.removeItem(k)}catch(e){}}};
+const FEE=100, PROGS={pg:['MBA','MCA','MA','MCom','MSc'],ug:['BBA','BCA','BA','BCom','BSc']};
+const TIER={50:'var(--t50)',30:'var(--t30)',15:'var(--t15)',0:'var(--t0)'};
+let tt;const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2600)};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const initials=n=>n.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+const mask=m=>m?`+91 ${m.slice(0,2)}•••••${m.slice(7)}`:'';
+
+/* Learner: from registration (if any) or a sample */
+function learner(){
+  const reg=store.get('ydst_reg')||{};
+  const l=store.get('ydst_learner')||{};
+  return {name:l.name||reg.name||'Ananya Sharma',email:l.email||reg.email||'ananya.sharma@example.com',mobile:l.mobile||reg.mobile||'9876543210',
+          level:l.level||reg.level||'pg',prog:l.prog||reg.prog||'MBA',consent:l.consent!==undefined?l.consent:true};
+}
+let L=learner();
+let state=store.get('ydst_state')||'code';
+
+/* Sample histories per state (fictional) */
+const PAY_OK={date:'2 Sep 2026, 11:42 AM',amount:FEE,status:'Paid',txn:'pay_Ny3kQ8rT2vX9aB',ok:true};
+const T_VOID={date:'3 Sep 2026',paper:'Master\'s',score:55,result:'void'};
+const T_29={date:'12 Oct 2026',score:29,tier:0};
+const T_46={date:'15 Nov 2026',score:46,tier:30,code:'YDPG-K7Q2M',cstat:'Active',expires:'15 Dec 2026'};
+function data(){
+  const paper=L.level==='pg'?"Master's":"Bachelor's", pre=L.level==='pg'?'YDPG':'YDUG';
+  const t=(o)=>({paper,...o,code:o.code?o.code.replace('YDPG',pre):o.code});
+  switch(state){
+    case 'unpaid':  return {pays:[],tests:[]};
+    case 'pending': return {pays:[{date:'15 Nov 2026, 5:41 PM',amount:FEE,status:'Pending',txn:'pay_Pq7mL2xC8dR4sK'}],tests:[]};
+    case 'ready':   return {pays:[{...PAY_OK,date:'15 Nov 2026, 5:44 PM'}],tests:[]};
+    case 'progress':return {pays:[PAY_OK],tests:[t(T_VOID),t(T_29)]};
+    case 'limit':   return {pays:[PAY_OK],tests:[t(T_VOID),t({...T_29,date:'14 Nov 2026'})]};
+    case 'code':    return {pays:[{date:'2 Sep 2026, 11:39 AM',amount:FEE,status:'Failed',txn:'pay_Hc4vB7nM1zQ6wE'},PAY_OK],tests:[t(T_VOID),t(T_29),t(T_46)]};
+    case 'enrolled':return {pays:[PAY_OK],tests:[t(T_VOID),t(T_29),t({...T_46,cstat:'Used · enrolled'})]};
+    case 'refunded':return {pays:[{...PAY_OK,status:'Refunded',refunded:'5 Sep 2026'}],tests:[]};
+  }
+}
+
+/* Icons */
+const IC={
+  pay:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  test:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1Z"/><path d="M8 5H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2"/><path d="m9 14 2 2 4-4"/></svg>',
+  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>',
+  gift:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>',
+  grad:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>',
+  undo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg>',
+  arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>',
+  dl:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>'
+};
+
+/* P2 Next step — one card, one button, chosen by state (PRD 8.2) */
+const NEXT={
+  unpaid:  {tone:'red',ic:'pay',eye:'Next step',h:`Pay ₹${FEE} to take the test`,p:'One-time payment, valid for life. 1 test a month, free retakes.',btn:`Pay ₹${FEE}`,act:'pay'},
+  pending: {tone:'amber',ic:'clock',eye:'Payment',h:'Your bank is still confirming your payment',p:'This usually takes a few minutes. We\'ll message you as soon as it\'s done.',btn:'Refresh',act:'refresh',ghost:true},
+  ready:   {tone:'green',ic:'test',eye:'Next step',h:'Your test is ready',p:'60 questions, 60 minutes, no negative marking. Keep your webcam on.',btn:'Start test',act:'start'},
+  progress:{tone:'amber',ic:'test',eye:'In progress',h:'Your test is in progress',p:'Pick up where you left off. The timer keeps running.',btn:'Resume test',act:'resume'},
+  limit:   {tone:'grey',ic:'cal',eye:'Next attempt',h:'Your next attempt opens on 1 Dec 2026',p:'You scored 29/60 this month. You need 31 to unlock 15% off. Retakes are free.'},
+  code:    {tone:'green',ic:'gift',eye:'You qualified',h:'You\'ve unlocked 30% off. Use it by 15 Dec 2026.',p:'Pick a partner university and enrol with your code. A counsellor will call you within 24 hours.',btn:'Explore universities',act:'explore'},
+  enrolled:{tone:'green',ic:'grad',eye:'Enrolled',h:'You\'re enrolled at D Y Patil University with 30% off',p:'Your scholarship code has been used. No more attempts are needed.'},
+  refunded:{tone:'grey',ic:'undo',eye:'Payment refunded',h:'Your payment was refunded',p:`Pay ₹${FEE} again to take the test.`,btn:`Pay ₹${FEE}`,act:'pay'}
+};
+
+function render(){
+  const D=data(), paper=L.level==='pg'?"Master's paper":"Bachelor's paper";
+  // header + P1
+  $('#meName').textContent=L.name.split(' ')[0]; $('#meAv').textContent=initials(L.name);
+  $('#p1Av').textContent=initials(L.name); $('#p1Name').textContent=L.name;
+  $('#p1Meta').textContent=`${mask(L.mobile)} · ${L.prog} · ${paper}`;
+  // P2
+  const n=NEXT[state];
+  $('#p2').className='card next tone-'+n.tone;
+  $('#p2').innerHTML=`<span class="ic" aria-hidden="true">${IC[n.ic]}</span><div class="tx"><div class="eyebrow">${n.eye}</div><h2>${n.h}</h2><p>${n.p}</p></div>${n.btn?`<button class="btn${n.ghost?' ghost':''}" data-act="${n.act}">${n.btn}${n.act==='explore'||n.act==='start'||n.act==='resume'?IC.arrow:''}</button>`:''}`;
+  // P3 scholarship code (only with an active code)
+  const active=D.tests.filter(t=>t.cstat==='Active');
+  $('#p3').hidden=!active.length;
+  if(active.length){
+    const c=active.sort((a,b)=>b.tier-a.tier)[0];
+    $('#p3').innerHTML=`<div class="card-b"><div class="code-top"><div><div class="pct">${c.tier}%<small>off</small></div><div class="lbl">First-semester tuition · ${L.prog}</div></div>
+      <div class="code-box"><code id="codeTxt">${c.code}</code><button data-act="copy" data-code="${c.code}">Copy</button></div></div>
+      <div class="days" aria-hidden="true"><span style="width:100%"></span></div>
+      <div class="code-meta"><span>Valid until <b>${c.expires}</b></span><span><b>30 days</b> left</span><span>Any of 18 partner universities</span></div></div>`;
+  }
+  // P4 test history
+  $('#p4r').textContent=D.tests.length?`${D.tests.length} attempt${D.tests.length>1?'s':''}`:'';
+  $('#p4b').innerHTML=D.tests.length?`<table class="tbl"><thead><tr><th>Date</th><th class="hide-sm">Paper</th><th>Score</th><th>Result</th><th>Code</th></tr></thead><tbody>${[...D.tests].reverse().map(t=>{
+    const res=t.result==='void'?'<span class="tag bad">Void · proctoring</span>':t.tier?`<span class="tag plain"><i style="background:${TIER[t.tier]}"></i>${t.tier}% off</span>`:'<span class="tag plain"><i style="background:var(--t0)"></i>No discount</span>';
+    const sc=t.result==='void'?'<span class="muted">—</span>':`<span class="score"><b>${t.score}<small>/60</small></b><span class="sbar"><span style="width:${t.score/60*100}%;background:${TIER[t.tier]}"></span></span></span>`;
+    const code=t.code?`<span class="mono">${t.code}</span> <span class="tag ${t.cstat==='Active'?'ok':'grey'}" style="height:20px;font-size:11px">${t.cstat}</span>`:'<span class="muted">—</span>';
+    return `<tr><td>${t.date}</td><td class="hide-sm">${t.paper}</td><td>${sc}</td><td>${res}</td><td class="c2${t.code?'':' hide-sm'}">${code}</td></tr>`}).join('')}</tbody></table>`
+    :`<p class="empty">${['unpaid','refunded','pending'].includes(state)?'Your tests will show here once your payment is done.':'No tests yet. Start your first test above.'}</p>`;
+  // P5 payments
+  $('#p5b').innerHTML=D.pays.length?`<table class="tbl"><thead><tr><th>Date</th><th>Amount</th><th>Status</th><th class="hide-sm">Transaction ID</th><th></th></tr></thead><tbody>${[...D.pays].reverse().map(p=>{
+    const cls=p.status==='Paid'?'ok':p.status==='Failed'?'bad':p.status==='Pending'?'wait':'grey';
+    return `<tr><td>${p.date}${p.refunded?`<br><span class="muted" style="font-size:12px">Refunded ${p.refunded}</span>`:''}</td><td class="num">₹${p.amount}</td><td><span class="tag ${cls}">${p.status}</span></td><td class="hide-sm mono muted">${p.txn}</td><td class="c2">${p.ok&&p.status==='Paid'?`<button class="rcpt" data-act="receipt" data-txn="${p.txn}" data-date="${p.date}">${IC.dl}Receipt</button>`:p.status==='Failed'?'<span class="muted" style="font-size:12px">No money was taken</span>':''}</td></tr>`}).join('')}</tbody></table>`
+    :`<p class="empty">No payments yet.</p>`;
+  // P6
+  $('#dMob').value=mask(L.mobile); $('#dName').value=L.name; $('#dEmail').value=L.email; $('#dConsent').checked=!!L.consent;
+  setLevel(L.level,L.prog);
+  const lock=state==='progress';
+  $('#dProg').disabled=lock; $$('#dLevel button').forEach(b=>b.disabled=lock); $('#progLock').hidden=!lock;
+  $('#feeNote').innerHTML=`<b>Registration fee:</b> ₹${FEE}, one-time and valid for life. <b>Attempts:</b> 1 test a month, free retakes. <b>Scholarship:</b> score 31+ for 15% off, 41+ for 30% off, 51+ for 50% off.`;
+}
+function setLevel(l,prog){
+  $$('#dLevel button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+  $('#dProg').innerHTML=PROGS[l].map(p=>`<option${p===prog?' selected':''}>${p}</option>`).join('');
+}
+$('#dLevel').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;setLevel(b.dataset.l,PROGS[b.dataset.l][0])});
+
+/* Actions */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('[data-act]');if(!a)return;
+  const act=a.dataset.act;
+  if(act==='pay'){toast('Prototype: payment checkout would open here. Showing the paid state.');setState('ready')}
+  else if(act==='refresh'){toast('Payment confirmed.');setState('ready')}
+  else if(act==='start'){toast('In production this opens your test on gradr.in. Showing the in-progress state.');setState('progress')}
+  else if(act==='resume'){toast('In production this reopens your test on gradr.in.')}
+  else if(act==='explore'){location.href='index.html#unis'}
+  else if(act==='copy'){const c=a.dataset.code;(navigator.clipboard?navigator.clipboard.writeText(c):Promise.reject()).then(()=>toast('Code copied'),()=>toast(c))}
+  else if(act==='receipt'){downloadReceipt(a.dataset.txn,a.dataset.date)}
+});
+function downloadReceipt(txn,date){
+  const html=`<!doctype html><meta charset="utf-8"><title>YDST receipt</title><body style="font-family:system-ui,sans-serif;max-width:520px;margin:40px auto;color:#1a1d21"><h2 style="margin:0">YourDegree · YDST 2026</h2><p style="color:#5f636b">Payment receipt (prototype sample)</p><table style="width:100%;border-collapse:collapse;margin-top:16px">${[['Name',esc(L.name)],['Mobile',mask(L.mobile)],['Email',esc(L.email)],['Paid on',date],['Item','YDST registration fee (one-time, lifetime)'],['Amount (incl. GST)','₹'+FEE],['Transaction ID',txn]].map(([k,v])=>`<tr><td style="padding:8px 0;border-bottom:1px solid #eee;color:#5f636b">${k}</td><td style="padding:8px 0;border-bottom:1px solid #eee;text-align:right">${v}</td></tr>`).join('')}</table></body>`;
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{type:'text/html'}));a.download=`ydst-receipt-${txn}.html`;document.body.appendChild(a);a.click();a.remove();
+  toast('Receipt downloaded');
+}
+$('#detailsForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=$('#dName').value.trim(), email=$('#dEmail').value.trim();
+  if(name.length<2){toast('Enter your full name');return}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){toast('Enter a valid email');return}
+  L={...L,name,email,level:$('#dLevel .on').dataset.l,prog:$('#dProg').value,consent:$('#dConsent').checked};
+  store.set('ydst_learner',L);render();toast('Details saved');
+});
+function setState(s){state=s;store.set('ydst_state',s);$('#demoState').value=s;render()}
+$('#demoState').addEventListener('change',e=>setState(e.target.value));
+
+/* Header menu */
+$('#meBtn').addEventListener('click',()=>{const m=$('#meMenu'),o=m.hidden;m.hidden=!o;$('#meBtn').setAttribute('aria-expanded',o)});
+document.addEventListener('click',e=>{if(!e.target.closest('#me'))$('#meMenu').hidden=true});
+$('#meMenu').addEventListener('click',()=>{$('#meMenu').hidden=true});
+$('#signOut').addEventListener('click',()=>{store.del('ydst_signed_in');show()});
+
+/* Sign in: mobile + OTP (any 6 digits in the prototype) */
+let otpSent=false;
+const otpInputs=$$('#otp input');
+otpInputs.forEach((inp,i)=>{
+  inp.addEventListener('input',()=>{inp.value=inp.value.replace(/\D/g,'').slice(-1);if(inp.value&&i<5)otpInputs[i+1].focus();if(otpInputs.every(x=>x.value))$('#signinForm').requestSubmit()});
+  inp.addEventListener('keydown',e=>{if(e.key==='Backspace'&&!inp.value&&i)otpInputs[i-1].focus()});
+  inp.addEventListener('paste',e=>{const d=(e.clipboardData.getData('text')||'').replace(/\D/g,'').slice(0,6);if(d.length===6){e.preventDefault();d.split('').forEach((c,k)=>otpInputs[k].value=c);$('#signinForm').requestSubmit()}});
+});
+$('#mob').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,10);$('#mobErr').hidden=true});
+$('#signinForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const m=$('#mob').value;
+  if(!/^[6-9]\d{9}$/.test(m)){$('#mobErr').hidden=false;$('#mob').focus();return}
+  if(!otpSent){otpSent=true;$('#otpTo').textContent='+91 '+m;$('#otpStep').hidden=false;$('#signinBtn').textContent='Verify & sign in';$('#mob').readOnly=true;otpInputs[0].focus();return}
+  if(!otpInputs.every(x=>x.value)){otpInputs.find(x=>!x.value).focus();return}
+  const reg=store.get('ydst_reg');
+  if(!reg||reg.mobile!==m){L={...learner(),mobile:m};store.set('ydst_learner',L)}
+  store.set('ydst_signed_in',true);show();
+});
+
+function show(){
+  const signed=!!store.get('ydst_signed_in');
+  $('#signin').hidden=signed;$('#profile').hidden=!signed;$('#me').hidden=!signed;$('#demo').hidden=!signed;
+  document.title=signed?'My Profile · YDST 2026':'Sign in · YDST 2026';
+  if(signed){L=learner();$('#demoState').value=state;render()}
+  else{otpSent=false;$('#otpStep').hidden=true;$('#mob').readOnly=false;$('#mob').value='';otpInputs.forEach(x=>x.value='');$('#signinBtn').textContent='Send OTP'}
+}
+show();
+</script>
+</body>
+</html>
