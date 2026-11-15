@@ -83,9 +83,14 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 .flag::after{content:"";position:absolute;inset:4.5px;border-radius:50%;background:#000080}
 .submit{width:100%;height:37px;margin-top:58px;border-radius:4px;background:#999;color:#fff;font-weight:600;font-size:14px;cursor:not-allowed;transition:background .15s}
 .otp-on .submit{margin-top:14px}
-.fee-box{margin-top:14px;border:1px dashed var(--line,#d9dde3);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;color:var(--ink-2)}
-.fee-box b{display:block;color:var(--ink);font-size:13px;font-weight:600}
-.fee-box .amt{font-size:18px;font-weight:700;color:var(--ink);white-space:nowrap}
+.fee-box{margin-top:14px;border-radius:10px;background:#fff6f3;border:1px solid #f6d9cf;padding:10px 12px}
+.fee-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.fee-top .lbl{font-size:13px;font-weight:600;color:var(--ink)}
+.fee-top .lbl small{display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:1px}
+.fee-top .amt{font-size:22px;font-weight:700;color:var(--red);line-height:1;white-space:nowrap}
+.fee-pts{list-style:none;display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:4px;margin-top:9px;padding:0}
+.fee-pts li{display:flex;align-items:center;gap:3px;font-size:10.5px;font-weight:500;color:var(--ink-2);background:#fff;border:1px solid #f1e1db;border-radius:999px;padding:3px 6px 3px 5px;white-space:nowrap}
+.fee-pts svg{width:11px;height:11px;color:var(--green);flex:none}
 .fee-box + .submit{margin-top:10px}
 .field .verified,.field .change{display:none}
 .field.ok{border-color:#9fd9bc;background:#f6fcf9}
@@ -598,7 +603,10 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
         </label>
         <label class="field"><input id="name" type="text" placeholder="Full name *" aria-label="Full name"></label>
         <label class="field"><input id="email" type="email" placeholder="Email Id *" aria-label="Email"></label>
-        <div class="fee-box"><div><b>Registration fee</b>Pay once, valid for life · Test once a month</div><span class="amt">₹100</span></div>
+        <div class="fee-box">
+          <div class="fee-top"><span class="lbl">Registration fee<small>One-time payment</small></span><span class="amt">₹100</span></div>
+          <ul class="fee-pts"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Valid for life</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>1 test a month</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Free retakes</li></ul>
+        </div>
         <button type="submit" class="submit" id="submitBtn">Pay ₹100 &amp; Start Test</button>
         <p class="legal">By submitting this form, you agree to our <a href="#">Terms of Service</a> &amp; <a href="#">Privacy Policy</a> and to be contacted by us via Call/Email/WhatsApp/SMS.</p>
       </form>
