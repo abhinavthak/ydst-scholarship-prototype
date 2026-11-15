@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Registration Payments · YDST Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#c13515; --red-dark:#a92c10;
+  --ink:#1a1d21; --ink-2:#3d4148; --muted:#5f636b; --line:#e5e5e5; --line-2:#efefef;
+  --bg:#f6f6f4; --card:#fff; --tile:#f2f2f2;
+  --green:#0b7a4b; --green-bg:#e3f4ea; --amber:#9a5b00; --amber-bg:#fdf0d8;
+  --grey-bg:#eeeeee; --blue:#1d4ed8; --blue-bg:#e5ecfd; --violet:#6b3fa0; --violet-bg:#f0e8fa;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Google Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.45;font-size:14px}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+/* Top bar */
+.top{background:#fff;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:58px}
+.logo{font-weight:700;font-size:15px;line-height:1.05;color:#581000}
+.logo i{color:var(--red);font-style:normal}
+.crumb{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center}
+.crumb b{color:var(--ink);font-weight:600}
+.top .site{margin-left:auto;font-size:13px;color:var(--muted);text-decoration:none}
+.top .site:hover{color:var(--ink)}
+
+/* Header */
+.head{display:flex;align-items:flex-start;gap:16px;padding:28px 0 18px;flex-wrap:wrap}
+.head h1{font-size:26px;font-weight:600;letter-spacing:-.02em}
+.head p{color:var(--muted);margin-top:4px;max-width:620px}
+.head .acts{margin-left:auto;display:flex;gap:8px}
+.btn{height:36px;padding:0 14px;border-radius:8px;display:inline-flex;align-items:center;gap:7px;font-weight:500;font-size:13px;border:1px solid var(--line);background:#fff;white-space:nowrap}
+.btn:hover{border-color:#cfcfcf}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.primary:hover{background:#000}
+.btn svg{width:15px;height:15px}
+.btn.spin svg{animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi span{font-size:12px;color:var(--muted)}
+.kpi b{display:block;font-size:24px;font-weight:600;letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+.kpi small{font-size:12px;color:var(--muted)}
+
+/* Filters */
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;margin-top:16px}
+.filters{display:flex;flex-wrap:wrap;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line-2);align-items:flex-end}
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font-size:11px;color:var(--muted);font-weight:500}
+.f input,.f select{height:36px;border:1px solid var(--line);border-radius:8px;padding:0 10px;background:#fff;min-width:0}
+.f input:focus,.f select:focus{outline:2px solid #1a1d2122;border-color:#bbb}
+.f.search{flex:1 1 220px}
+.f.search input{width:100%;padding-left:32px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235f636b' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") 10px center/15px no-repeat}
+.note{font-size:12px;color:var(--muted);padding:8px 16px 0}
+
+.tabs{display:flex;gap:6px;padding:12px 16px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:500;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.tab em{font-style:normal;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.tab.on em{color:#cfd2d6}
+
+.sumbar{display:flex;align-items:center;gap:12px;padding:4px 16px 12px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.sumbar b{color:var(--ink);font-weight:600}
+.sumbar .link{margin-left:auto;font-weight:500;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+
+/* Table */
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 16px;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);background:#fafafa;white-space:nowrap}
+.tbl td{padding:12px 16px;border-bottom:1px solid var(--line-2);vertical-align:middle}
+.tbl .num{text-align:right;font-variant-numeric:tabular-nums}
+.row{cursor:pointer}
+.row:hover td{background:#fbfbfa}
+.row.open td{background:#fbfbfa;border-bottom-color:transparent}
+.who{display:flex;align-items:center;gap:11px;min-width:0}
+.av{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:600;background:var(--tile);color:var(--ink-2)}
+.who b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.who small{display:block;color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chev{width:16px;height:16px;color:var(--muted);transition:transform .15s;flex:none}
+.row.open .chev{transform:rotate(90deg)}
+.prog{font-size:13px}
+.prog small{display:block;color:var(--muted);font-size:12px}
+.date{white-space:nowrap;font-size:13px;color:var(--ink-2)}
+
+.pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 9px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.s-paid{background:var(--green-bg);color:var(--green)}
+.s-progress{background:var(--blue-bg);color:var(--blue)}
+.s-failed{background:#fde7e3;color:#b42318}
+.s-unpaid{background:var(--grey-bg);color:var(--ink-2)}
+.s-refunded{background:var(--violet-bg);color:var(--violet)}
+
+/* Detail */
+.detail>td{padding:0 16px 16px;background:#fbfbfa}
+.dbox{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.dhead{display:flex;flex-wrap:wrap;gap:8px 24px;padding:14px 16px;border-bottom:1px solid var(--line-2);align-items:center}
+.dhead .item span{display:block;font-size:11px;color:var(--muted)}
+.dhead .item b{font-weight:600;font-size:13px}
+.dhead .pill{margin-left:auto}
+.ptbl{width:100%;border-collapse:collapse;font-size:13px}
+.ptbl th{font-size:11px;font-weight:500;color:var(--muted);text-align:left;padding:9px 16px;border-bottom:1px solid var(--line-2);white-space:nowrap}
+.ptbl td{padding:10px 16px;border-bottom:1px solid var(--line-2);vertical-align:top}
+.ptbl tr:last-child td{border-bottom:0}
+.ptbl .res{font-weight:600}
+.r-paid{color:var(--green)} .r-failed{color:#b42318} .r-opened{color:var(--ink-2)} .r-refunded{color:var(--violet)}
+.txn{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--ink-2);display:inline-flex;align-items:center;gap:6px}
+.copy{color:var(--muted);display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px}
+.copy:hover{background:var(--tile);color:var(--ink)}
+.copy svg{width:13px;height:13px}
+.empty-p{padding:18px 16px;color:var(--muted);font-size:13px}
+.gw{color:var(--muted)}
+
+.pager{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;font-size:13px;color:var(--muted)}
+.pager .btns{display:flex;gap:6px}
+.pager .btn{height:32px}
+.pager .btn:disabled{opacity:.4;cursor:default}
+.empty{padding:48px 16px;text-align:center;color:var(--muted)}
+
+.foot{font-size:12px;color:var(--muted);padding:18px 0 40px;text-align:center}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.mob{display:none}
+.mob .pill{display:inline-flex}
+
+@media (max-width:900px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .tbl .c-prog,.tbl .c-att{display:none}
+}
+@media (max-width:640px){
+  .head .acts{margin-left:0;width:100%}
+  .head .acts .btn{flex:1;justify-content:center}
+  .kpi b{font-size:20px}
+  .filters .f:not(.search){flex:1 1 calc(50% - 5px)}
+  .filters .f input,.filters .f select{width:100%}
+  .filters .apply{flex:1 1 100%}
+  .filters .apply .btn{width:100%;justify-content:center}
+  .tbl thead{display:none}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block}
+  .tbl td.c-prog,.tbl td.c-att{display:none}
+  .who>div{flex:1}
+  .tbl .c-date,.tbl .c-paid,.tbl .c-status{display:none}
+  .mob .pill{margin-top:6px}
+  .ptbl,.ptbl tbody{display:block}
+  .txn{word-break:break-all}
+  .crumb .adm{display:none}
+  .top .site{font-size:12px}
+  .tbl td{padding:12px}
+  .mob{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+  .detail>td{padding:0 12px 12px}
+  .ptbl thead{display:none}
+  .ptbl tr{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 14px;border-bottom:1px solid var(--line-2)}
+  .ptbl tr:last-child{border-bottom:0}
+  .ptbl td{padding:0;border:0}
+  .ptbl td[data-k]::before{content:attr(data-k) " · ";color:var(--muted)}
+  .ptbl td.t-open{grid-column:1}
+  .ptbl td.t-res{grid-column:2;grid-row:1;text-align:right}
+  .ptbl td.t-amt::before,.ptbl td.t-open::before,.ptbl td.t-res::before{content:none}
+  .ptbl td.t-amt{grid-column:2;text-align:right}
+  .ptbl td.t-gw,.ptbl td.t-set,.ptbl td.t-txn{grid-column:1/-1}
+  .dhead .pill{margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="logo">Your<i>.</i><br>Degree</div>
+    <div class="crumb"><span class="adm">Admin</span> <span class="adm">/</span> <b>YDST registration payments</b></div>
+    <a class="site" href="./">View YDST page →</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="head">
+    <div>
+      <h1>Registration Payments</h1>
+      <p>Every learner who started YDST registration. Open a learner to see each payment attempt for the ₹100 one-time registration fee.</p>
+    </div>
+    <div class="acts">
+      <button class="btn" id="refresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/></svg>Refresh payment status</button>
+      <button class="btn primary" id="export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Export CSV</button>
+    </div>
+  </div>
+
+  <section class="kpis" aria-label="Summary">
+    <div class="kpi"><span>Collected</span><b id="kCollected">₹0</b><small id="kCollectedSub"></small></div>
+    <div class="kpi"><span>Registered (paid)</span><b id="kPaid">0</b><small id="kPaidSub"></small></div>
+    <div class="kpi"><span>Not paid yet</span><b id="kUnpaid">0</b><small id="kUnpaidSub"></small></div>
+    <div class="kpi"><span>Refunded</span><b id="kRefund">₹0</b><small id="kRefundSub"></small></div>
+  </section>
+
+  <section class="card">
+    <form class="filters" id="filters" onsubmit="return false">
+      <div class="f search"><label for="q">Search</label><input id="q" type="search" placeholder="Name, email, phone or transaction id"></div>
+      <div class="f"><label for="lvl">Program</label><select id="lvl"><option value="">All programs</option></select></div>
+      <div class="f"><label for="from">From</label><input id="from" type="date"></div>
+      <div class="f"><label for="to">To</label><input id="to" type="date"></div>
+      <div class="f apply"><label>&nbsp;</label><button class="btn primary" id="apply" type="submit">Apply</button></div>
+    </form>
+    <p class="note">Dates match a registration started, or a payment opened, on those days (IST).</p>
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div class="sumbar"><span id="summary"></span><button class="link" id="expandAll" type="button">Expand all</button></div>
+    <table class="tbl">
+      <thead><tr><th>Learner</th><th class="c-prog">Program</th><th class="c-status">Status</th><th class="num c-att">Attempts</th><th class="num c-paid">Paid</th><th class="c-date">Last activity</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="pager"><span id="range"></span><div class="btns"><button class="btn" id="prev">Previous</button><button class="btn" id="next">Next</button></div></div>
+  </section>
+  <p class="foot">Prototype · sample data only. Fee: ₹100 one-time lifetime registration · 1 test per month.</p>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const FEE=100, PAGE=20;
+
+/* ---- Sample data (fictional learners) ---- */
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const pick=a=>a[Math.floor(rnd()*a.length)];
+const first=['Aarav','Diya','Kabir','Meera','Rohan','Isha','Arjun','Ananya','Vihaan','Saanvi','Aditya','Nisha','Karan','Pooja','Rahul','Sneha','Yash','Kavya','Nikhil','Tanvi','Siddharth','Ritika','Manav','Aisha','Dev','Priya','Harsh','Neha','Varun','Ira','Om','Zara'];
+const last=['Sharma','Verma','Iyer','Nair','Patel','Gupta','Reddy','Das','Joshi','Mehta','Kulkarni','Singh','Rao','Bose','Kapoor','Chauhan','Menon','Pillai','Saxena','Bhatt'];
+const progs={PG:['MBA','MCA','MA','MCom','MSc'],UG:['BBA','BCA','BA','BCom','BSc']};
+const uuid=()=>'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.floor(rnd()*16);return(c==='x'?r:(r&3|8)).toString(16)});
+const NOW=new Date('2026-11-15T18:00:00+05:30').getTime(), MIN=60e3, DAY=864e5;
+
+const learners=[];
+const used=new Set();
+for(let i=0;i<34;i++){
+  let f,l;do{f=pick(first);l=pick(last)}while(used.has(f+l));used.add(f+l);
+  const lvl=rnd()<.55?'PG':'UG', prog=pick(progs[lvl]);
+  const startedAt=NOW-Math.floor(rnd()*30*DAY)-Math.floor(rnd()*600)*MIN;
+  const kind=rnd();
+  const pays=[];let t=startedAt+Math.floor(rnd()*6)*MIN;
+  const open=(result,extra={})=>{const p={opened:t,amount:FEE,result,txn:uuid(),...extra};pays.push(p);t+=Math.floor(5+rnd()*900)*MIN;return p};
+  if(kind<.45){ // paid, maybe after a failed / abandoned try
+    if(rnd()<.35)open(rnd()<.5?'failed':'opened');
+    const p=open('paid');p.settled=p.opened+Math.floor(1+rnd()*4)*MIN;
+  }else if(kind<.52){ // paid then refunded
+    const p=open('paid');p.settled=p.opened+2*MIN;
+    p.refundedAt=p.settled+Math.floor(1+rnd()*3)*DAY;p.result='refunded';
+  }else if(kind<.58){ // in progress (very recent)
+    t=NOW-Math.floor(2+rnd()*20)*MIN;open('pending');
+  }else if(kind<.72){ // tried and failed
+    open('failed');if(rnd()<.4)open('failed');
+  }else if(kind<.82){ // opened, abandoned
+    open('opened');
+  } // else: registered form only, no payment opened
+  learners.push({id:'YDST'+String(10231+i).padStart(5,'0'),name:f+' '+l,email:(f+'.'+l+(i%3?'':i)).toLowerCase()+'@example.com',
+    phone:'9'+String(Math.floor(rnd()*1e9)).padStart(9,'0'),level:lvl,prog,startedAt,pays:pays.sort((a,b)=>b.opened-a.opened)});
+}
+learners.forEach(L=>{
+  const ps=L.pays;
+  L.status=ps.some(p=>p.result==='paid')?'paid':ps.some(p=>p.result==='refunded')?'refunded':ps.some(p=>p.result==='pending')?'progress':ps.length&&ps[0].result==='failed'?'failed':'unpaid';
+  L.paid=ps.filter(p=>p.result==='paid').reduce((s,p)=>s+p.amount,0);
+  L.refunded=ps.filter(p=>p.result==='refunded').reduce((s,p)=>s+p.amount,0);
+  L.last=Math.max(L.startedAt,...ps.flatMap(p=>[p.opened,p.settled||0,p.refundedAt||0]));
+});
+learners.sort((a,b)=>b.last-a.last);
+
+/* ---- Formatting ---- */
+const inr=n=>'₹'+n.toLocaleString('en-IN');
+const fmt=ts=>new Date(ts).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit',hour12:true}).replace(',',' at').replace(/\b(am|pm)\b/,m=>m.toUpperCase());
+const ymd=ts=>new Date(ts+5.5*36e5).toISOString().slice(0,10);
+const initials=n=>n.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const STATUS={paid:['Paid · registered','s-paid'],progress:['Payment in progress','s-progress'],failed:['Payment failed','s-failed'],unpaid:['Not paid','s-unpaid'],refunded:['Refunded','s-refunded']};
+const RESULT={paid:['Paid','r-paid','approved · success'],failed:['Failed','r-failed','declined · failure'],opened:['Opened · no result','r-opened','— · —'],pending:['Awaiting gateway','r-opened','pending · —'],refunded:['Refunded','r-refunded','approved · refunded']};
+const TABS=[['all','All'],['paid','Paid'],['progress','Payment in progress'],['failed','Payment failed'],['unpaid','Not paid'],['refunded','Refunded']];
+
+/* ---- State ---- */
+let tab='all',page=0,openIds=new Set(),filt={q:'',lvl:'',from:'',to:''};
+const avColors=['#fde7e3','#e3f4ea','#e5ecfd','#fdf0d8','#f0e8fa','#e6f3f6'];
+
+$('#lvl').innerHTML+=Object.entries(progs).map(([k,v])=>`<optgroup label="${k==='PG'?'Postgraduate':'Undergraduate'}">${v.map(p=>`<option value="${p}">${p}</option>`).join('')}</optgroup>`).join('');
+
+function base(){
+  const q=filt.q.trim().toLowerCase();
+  return learners.filter(L=>{
+    if(filt.lvl&&L.prog!==filt.lvl)return false;
+    if(q&&!(L.name.toLowerCase().includes(q)||L.email.includes(q)||L.phone.includes(q)||L.id.toLowerCase().includes(q)||L.pays.some(p=>p.txn.includes(q))))return false;
+    if(filt.from||filt.to){
+      const days=[L.startedAt,...L.pays.map(p=>p.opened)].map(ymd);
+      if(!days.some(d=>(!filt.from||d>=filt.from)&&(!filt.to||d<=filt.to)))return false;
+    }
+    return true;
+  });
+}
+function render(){
+  const all=base(), list=tab==='all'?all:all.filter(L=>L.status===tab);
+  // tabs
+  $('#tabs').innerHTML=TABS.map(([k,l])=>`<button class="tab${k===tab?' on':''}" role="tab" aria-selected="${k===tab}" data-tab="${k}">${l}<em>${k==='all'?all.length:all.filter(L=>L.status===k).length}</em></button>`).join('');
+  // KPIs (filtered set)
+  const paidN=all.filter(L=>L.status==='paid').length, coll=all.reduce((s,L)=>s+L.paid,0), ref=all.reduce((s,L)=>s+L.refunded,0);
+  const unpaid=all.filter(L=>['unpaid','failed','progress'].includes(L.status)).length;
+  $('#kCollected').textContent=inr(coll);$('#kCollectedSub').textContent=`${paidN} × ₹${FEE} fee`;
+  $('#kPaid').textContent=paidN;$('#kPaidSub').textContent=all.length?`${Math.round(paidN/all.length*100)}% of ${all.length} learners`:'—';
+  $('#kUnpaid').textContent=unpaid;$('#kUnpaidSub').textContent=`${all.filter(L=>L.status==='failed').length} failed · ${all.filter(L=>L.status==='progress').length} in progress`;
+  $('#kRefund').textContent=inr(ref);const rN=all.filter(L=>L.status==='refunded').length;$('#kRefundSub').textContent=`${rN} learner${rN===1?'':'s'}`;
+  // summary
+  const attempts=list.reduce((s,L)=>s+L.pays.length,0);
+  $('#summary').innerHTML=`<b>${list.length}</b> learners · <b>${attempts}</b> payment attempts · <b>${inr(list.reduce((s,L)=>s+L.paid,0))}</b> collected`;
+  // page
+  const pages=Math.max(1,Math.ceil(list.length/PAGE));page=Math.min(page,pages-1);
+  const slice=list.slice(page*PAGE,page*PAGE+PAGE);
+  $('#rows').innerHTML=slice.length?slice.map(row).join(''):`<tr><td colspan="6" class="empty">No learners match these filters.</td></tr>`;
+  $('#range').textContent=list.length?`${page*PAGE+1}–${page*PAGE+slice.length} of ${list.length} learners`:'';
+  $('#prev').disabled=page===0;$('#next').disabled=page>=pages-1;
+  $('#expandAll').textContent=slice.length&&slice.every(L=>openIds.has(L.id))?'Collapse all':'Expand all';
+}
+function row(L){
+  const [sl,sc]=STATUS[L.status], o=openIds.has(L.id);
+  const bg=avColors[L.name.charCodeAt(0)%avColors.length];
+  return `<tr class="row${o?' open':''}" data-id="${L.id}" tabindex="0" aria-expanded="${o}">
+    <td><div class="who"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg><span class="av" style="background:${bg}">${initials(L.name)}</span><div style="min-width:0"><b>${esc(L.name)}</b><small>${esc(L.email)} · ${L.phone}</small><span class="mob">${L.level} · ${L.prog} · ${fmt(L.last)}<br><span class="pill ${sc}">${sl}</span></span></div></div></td>
+    <td class="c-prog"><div class="prog">${L.prog}<small>${L.level==='PG'?'Postgraduate':'Undergraduate'}</small></div></td>
+    <td class="c-status"><span class="pill ${sc}">${sl}</span></td>
+    <td class="num c-att">${L.pays.length}</td>
+    <td class="num c-paid">${inr(L.paid)}</td>
+    <td class="c-date"><span class="date">${fmt(L.last)}</span></td>
+  </tr>${o?detail(L):''}`;
+}
+function detail(L){
+  const [sl,sc]=STATUS[L.status];
+  const body=L.pays.length?`<table class="ptbl"><thead><tr><th>Opened</th><th>Amount</th><th>Result</th><th>Gateway said · confirmed</th><th>Settled</th><th>Transaction id</th></tr></thead><tbody>${L.pays.map(p=>{
+    const [rl,rc,gw]=RESULT[p.result];
+    return `<tr><td class="t-open">${fmt(p.opened)}</td><td class="t-amt">${inr(p.amount)}</td><td class="t-res res ${rc}">${rl}</td><td class="t-gw gw" data-k="Gateway">${gw}</td><td class="t-set" data-k="Settled">${p.settled?fmt(p.settled):'—'}${p.refundedAt?`<br><span class="r-refunded">Refunded ${fmt(p.refundedAt)}</span>`:''}</td><td class="t-txn"><span class="txn">${p.txn}<button class="copy" data-copy="${p.txn}" aria-label="Copy transaction id" title="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></span></td></tr>`}).join('')}</tbody></table>`
+    :`<p class="empty-p">Registration form submitted. No payment opened yet.</p>`;
+  return `<tr class="detail"><td colspan="6"><div class="dbox">
+    <div class="dhead">
+      <div class="item"><span>Registration id</span><b>${L.id}</b></div>
+      <div class="item"><span>Program</span><b>${L.level} · ${L.prog}</b></div>
+      <div class="item"><span>Started</span><b>${fmt(L.startedAt)}</b></div>
+      <div class="item"><span>Fee</span><b>${inr(L.paid)} of ${inr(FEE)}</b></div>
+      <div class="item"><span>Attempts</span><b>${L.pays.length} payment${L.pays.length===1?'':'s'}</b></div>
+      <span class="pill ${sc}">${sl}</span>
+    </div>${body}</div></td></tr>`;
+}
+
+/* ---- Events ---- */
+$('#tabs').onclick=e=>{const b=e.target.closest('[data-tab]');if(!b)return;tab=b.dataset.tab;page=0;render()};
+const toggle=id=>{openIds.has(id)?openIds.delete(id):openIds.add(id);render()};
+$('#rows').onclick=e=>{
+  const c=e.target.closest('[data-copy]');
+  if(c){e.stopPropagation();navigator.clipboard?.writeText(c.dataset.copy).then(()=>toast('Transaction id copied'),()=>{});return}
+  const r=e.target.closest('.row');if(r)toggle(r.dataset.id);
+};
+$('#rows').onkeydown=e=>{const r=e.target.closest('.row');if(r&&(e.key==='Enter'||e.key===' ')){e.preventDefault();toggle(r.dataset.id);document.querySelector(`.row[data-id="${r.dataset.id}"]`)?.focus()}};
+$('#expandAll').onclick=()=>{const rows=[...document.querySelectorAll('.row')].map(r=>r.dataset.id);const all=rows.every(id=>openIds.has(id));rows.forEach(id=>all?openIds.delete(id):openIds.add(id));render()};
+$('#prev').onclick=()=>{page--;render()};$('#next').onclick=()=>{page++;render()};
+$('#apply').onclick=()=>{filt={q:$('#q').value,lvl:$('#lvl').value,from:$('#from').value,to:$('#to').value};page=0;render()};
+$('#q').oninput=()=>{filt.q=$('#q').value;page=0;render()};
+$('#lvl').onchange=()=>{filt.lvl=$('#lvl').value;page=0;render()};
+
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2200)}
+
+$('#refresh').onclick=()=>{
+  const b=$('#refresh');b.classList.add('spin');b.disabled=true;
+  setTimeout(()=>{
+    let n=0;
+    learners.forEach(L=>L.pays.forEach(p=>{if(p.result==='pending'){p.result='paid';p.settled=NOW;n++}}));
+    learners.forEach(L=>{if(L.pays.some(p=>p.result==='paid')&&L.status==='progress'){L.status='paid';L.paid=FEE}});
+    b.classList.remove('spin');b.disabled=false;render();
+    toast(n?`${n} pending payment${n>1?'s':''} confirmed by gateway`:'All payment statuses are up to date');
+  },900);
+};
+
+$('#export').onclick=()=>{
+  const list=tab==='all'?base():base().filter(L=>L.status===tab);
+  const q=v=>`"${String(v).replace(/"/g,'""')}"`;
+  const lines=[['Registration id','Name','Email','Phone','Level','Program','Status','Paid (INR)','Payment opened','Amount (INR)','Result','Settled','Transaction id'].map(q).join(',')];
+  list.forEach(L=>{
+    const st=STATUS[L.status][0];
+    if(!L.pays.length)lines.push([L.id,L.name,L.email,L.phone,L.level,L.prog,st,L.paid,'','','','',''].map(q).join(','));
+    L.pays.forEach(p=>lines.push([L.id,L.name,L.email,L.phone,L.level,L.prog,st,L.paid,fmt(p.opened),p.amount,RESULT[p.result][0],p.settled?fmt(p.settled):'',p.txn].map(q).join(',')));
+  });
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob(['﻿'+lines.join('\n')],{type:'text/csv'}));
+  a.download=`ydst-registration-payments-${ymd(Date.now())}.csv`;a.click();URL.revokeObjectURL(a.href);
+  toast(`Exported ${list.length} learners`);
+};
+
+render();
+</script>
+</body>
+</html>
