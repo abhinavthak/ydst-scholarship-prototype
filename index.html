@@ -83,6 +83,10 @@ header{background:var(--bg-soft);position:sticky;top:0;z-index:50}
 .flag::after{content:"";position:absolute;inset:4.5px;border-radius:50%;background:#000080}
 .submit{width:100%;height:37px;margin-top:58px;border-radius:4px;background:#999;color:#fff;font-weight:600;font-size:14px;cursor:not-allowed;transition:background .15s}
 .otp-on .submit{margin-top:14px}
+.fee-box{margin-top:14px;border:1px dashed var(--line,#d9dde3);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;color:var(--ink-2)}
+.fee-box b{display:block;color:var(--ink);font-size:13px;font-weight:600}
+.fee-box .amt{font-size:18px;font-weight:700;color:var(--ink);white-space:nowrap}
+.fee-box + .submit{margin-top:10px}
 .field .verified,.field .change{display:none}
 .field.ok{border-color:#9fd9bc;background:#f6fcf9}
 .field.ok .verified{display:inline-flex;align-items:center;gap:4px;color:var(--green);font-size:11px;font-weight:600;margin-right:8px}
@@ -561,13 +565,13 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
     <div>
       <div class="pill">Registrations open · YourDegree Scholarship Test</div>
       <h1>Scholarship Ka<br><span class="accent">Sabse Smart</span> Test</h1>
-      <p class="lead">Score 51 out of 60 and get <b>50% off your first-semester tuition</b> at 18 partner universities on YourDegree. Free to take, open anytime, results in minutes.</p>
+      <p class="lead">Score 51 out of 60 and get <b>50% off your first-semester tuition</b> at 18 partner universities on YourDegree. One-time ₹100 registration, open anytime, results in minutes.</p>
       <div class="stats"><div class="stats-track">
         <div><b>50%</b><span>First-sem fee waiver</span></div>
-        <div><b>₹0</b><span>Test fee</span></div>
+        <div><b>₹100</b><span>One-time fee</span></div>
         <div><b>18</b><span>Partner universities</span></div>
         <div><b>24×7</b><span>Take it anytime</span></div>
-        <div class="clone" aria-hidden="true"><b>50%</b><span>First-sem fee waiver</span></div><div class="clone" aria-hidden="true"><b>₹0</b><span>Test fee</span></div><div class="clone" aria-hidden="true"><b>18</b><span>Partner universities</span></div><div class="clone" aria-hidden="true"><b>24×7</b><span>Take it anytime</span></div></div>
+        <div class="clone" aria-hidden="true"><b>50%</b><span>First-sem fee waiver</span></div><div class="clone" aria-hidden="true"><b>₹100</b><span>One-time fee</span></div><div class="clone" aria-hidden="true"><b>18</b><span>Partner universities</span></div><div class="clone" aria-hidden="true"><b>24×7</b><span>Take it anytime</span></div></div>
       </div>
     </div>
 
@@ -594,13 +598,15 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
         </label>
         <label class="field"><input id="name" type="text" placeholder="Full name *" aria-label="Full name"></label>
         <label class="field"><input id="email" type="email" placeholder="Email Id *" aria-label="Email"></label>
-        <button type="submit" class="submit" id="submitBtn">Register &amp; Start Test</button>
+        <div class="fee-box"><div><b>Registration fee</b>Pay once, valid for life · Test once a month</div><span class="amt">₹100</span></div>
+        <button type="submit" class="submit" id="submitBtn">Pay ₹100 &amp; Start Test</button>
         <p class="legal">By submitting this form, you agree to our <a href="#">Terms of Service</a> &amp; <a href="#">Privacy Policy</a> and to be contacted by us via Call/Email/WhatsApp/SMS.</p>
       </form>
       <div class="form-ok" id="formOk">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
         <h3>You're registered!</h3>
-        <p>This is a prototype. In production, OTP verification and the test would start here.</p>
+        <p>Your ₹100 lifetime registration is done. You can take the test once every month.</p>
+        <p>This is a prototype. In production, payment and the test would start here.</p>
       </div>
     </div>
   </div>
@@ -616,7 +622,7 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
   <div class="feat"><div class="ic"><img src="assets/flash.svg" alt=""></div><h3>Instant <br>scholarship code</h3><p>Qualify and get your code right away, plus a call from your counsellor within 24 hours.</p></div>
   <div class="feat"><div class="ic raw"><img src="assets/icon2.png" alt=""></div><h3>Your university, <br>your choice</h3><p>Use it at any of our 18 partner universities. Your counsellor helps you compare them.</p></div>
   <div class="feat"><div class="ic"><img src="assets/radar.svg" alt=""></div><h3>Fair for every <br>program</h3><p>Same pattern for everyone. Difficulty is matched to your degree level, bachelor's or master's.</p></div>
-  <div class="feat"><div class="ic"><img src="assets/repeat.svg" alt=""></div><h3>Didn't make it? <br>Try next month</h3><p>One attempt every month, with a brand-new paper each time.</p></div>
+  <div class="feat"><div class="ic"><img src="assets/repeat.svg" alt=""></div><h3>Didn't make it? <br>Try next month</h3><p>One attempt every month, with a brand-new paper each time. No fee to retake.</p></div>
 </section>
 
 <section class="unis" id="unis">
@@ -714,7 +720,7 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
     <h2 class="section-title">From sign-up to scholarship in 4 steps</h2>
     <p class="section-sub">The whole journey takes under 2 hours, including the test.</p>
     <div class="steps-grid">
-      <div><div class="n">01</div><h3>Register free</h3><p>Choose your program and verify your mobile and email with OTP.</p></div>
+      <div><div class="n">01</div><h3>Register once</h3><p>Choose your program, verify with OTP and pay a one-time ₹100 fee.</p></div>
       <div><div class="n">02</div><h3>Take the test</h3><p>Start whenever you like. Webcam on, full screen, 60 minutes.</p></div>
       <div><div class="n">03</div><h3>Get your result</h3><p>Instant score. Hit 51+ and your scholarship code appears on screen.</p></div>
       <div><div class="n">04</div><h3>Pick a university</h3><p>Enroll at a partner university within 30 days, at 50% off Semester 1.</p></div>
@@ -771,12 +777,12 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
 <section class="wrap cta">
   <div class="cta-m">
     <h2>Your 50% scholarship is one test away</h2>
-    <p>Register free and start right now. The test is open 24×7.</p>
-    <a href="#register" class="btn btn-light">Register free <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+    <p>Register once for ₹100 and start right now. The test is open 24×7.</p>
+    <a href="#register" class="btn btn-light">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
   </div>
   <div class="cta-box">
     <img src="assets/cta-banner.jpg" alt="Your 50% scholarship is one test away. Register free and start right now. The test is open 24×7.">
-    <a href="#register" class="cta-btn">Register free <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+    <a href="#register" class="cta-btn">Register now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
   </div>
 </section>
 </main>
@@ -793,7 +799,7 @@ a,button,input,select{-webkit-tap-highlight-color:rgba(193,53,21,.12)}
   </div>
 </footer>
 
-<div class="sticky-cta" id="stickyCta" aria-hidden="true"><div><b>Free · 60 min · 24×7</b><span>Score 51/60 for 50% off</span></div><a href="#register" class="btn" tabindex="-1">Register free</a></div>
+<div class="sticky-cta" id="stickyCta" aria-hidden="true"><div><b>₹100 once · 60 min · 24×7</b><span>Score 51/60 for 50% off</span></div><a href="#register" class="btn" tabindex="-1">Register now</a></div>
 
 <div class="reg-modal" id="regModal" role="dialog" aria-modal="true" aria-label="Register for YDST 2026" hidden>
   <div class="reg-backdrop" data-close></div>
@@ -939,7 +945,8 @@ $$('.tabs button').forEach(b=>b.onclick=()=>{$$('.tabs button').forEach(x=>x.cla
 
 /* FAQ */
 const faqs=[
- ['What is YDST?','The YourDegree Scholarship Test is a free online aptitude test. Score 51/60 or above and you get 50% off your first-semester tuition at any of our 18 partner universities.'],
+ ['What is YDST?','The YourDegree Scholarship Test is an online aptitude test. Score 51/60 or above and you get 50% off your first-semester tuition at any of our 18 partner universities.'],
+ ['Is there a fee to take YDST?','Yes, a one-time registration fee of ₹100. It is a lifetime registration: pay once and you can take the test once every month, with no fee for retakes.'],
  ['How does YourDegree help students choose the right course?','Certified counsellors look at your goals, budget and background, then help you compare programs and universities side by side before you decide.'],
  ['Is YourDegree connected with recognized universities?','Yes. We only list UGC-entitled online programs from NAAC-accredited universities.'],
  ['Does YourDegree charge students for counselling?','No. Counselling on YourDegree is completely free, with no hidden costs.'],
